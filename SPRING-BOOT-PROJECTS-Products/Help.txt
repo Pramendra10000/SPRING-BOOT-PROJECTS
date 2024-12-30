@@ -1,0 +1,360 @@
+
+
+
+===================================================== Controller ==================================================================
+package com.cu.prods.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.cu.prods.entity.Products;
+import com.cu.prods.service.Productservice;
+
+@RestController
+public class Mycontroller {
+	@Autowired
+	private Productservice prodservice;
+
+	@GetMapping("/home")
+	public String home() {
+		
+		return "This is my app";
+		
+	}
+	
+	
+	// get the Products.
+	@GetMapping("/products")
+	public List<Products> getProducts() {
+
+		return this.prodservice.getProductsservice();
+		
+	}
+	
+	@DeleteMapping("/deleteall")
+	public boolean deleteallproducts() {
+
+		return this.prodservice.deleteallproducts();
+		
+	}
+	
+	@PostMapping("/Addproducts")
+	public Products addProducts(@RequestBody Products products) {
+		System.out.println("Inside the addProducts"+products);
+		return this.prodservice.updatecourse(products);
+	}
+	
+	@PutMapping("/updateproducts")
+	public Products updateProducts(@RequestBody Products products) {
+		System.out.println("Inside the addProducts"+products);
+		return this.prodservice.addcourse(products);
+	}
+	
+	@GetMapping("/product/{id}")
+	//@RequestMapping(path = "/product/{id}" , method = RequestMethod.GET)
+	public Products getproduct(@PathVariable String id) {
+		System.out.println("Inside the getproduct"+id);
+		return this.prodservice.getproduct(Long.parseLong(id));
+		
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public List<Products> deteteproduct(@PathVariable String id) {
+		System.out.println("Inside the deleteproduct"+id);
+		return this.prodservice.deleteproduct(Long.parseLong(id));
+		
+	}
+	
+	
+	@DeleteMapping("/product/{id}")
+	public   ResponseEntity<HttpStatus> deleteProducts(@PathVariable String id){
+		try {
+			System.out.println("Inside the deleteProducts"+id);
+			this.prodservice.productdelete(Long.parseLong(id));
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+}
+
+
+
+===================================================== Entity ==================================================================
+package com.cu.prods.entity;
+
+public class Products {
+	
+  private long id;
+  private String title;
+  private String description;
+  
+  
+  
+public Products() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+
+
+public Products(long id, String title, String description) {
+	super();
+	this.id = id;
+	this.title = title;
+	this.description = description;
+}
+
+
+
+public long getId() {
+	return id;
+}
+public void setId(long id) {
+	this.id = id;
+}
+public String getTitle() {
+	return title;
+}
+public void setTitle(String title) {
+	this.title = title;
+}
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+
+@Override
+public String toString() {
+	return "Products [id=" + id + ", title=" + title + ", description=" + description + "]";
+}
+  
+	
+	
+}
+
+
+
+===================================================== Service  ==================================================================
+package com.cu.prods.service;
+
+import java.util.List;
+
+import com.cu.prods.entity.Products;
+
+public interface Productservice {
+
+	public List<Products> getProductsservice();
+	
+	public Products  getproduct(long id);
+
+	public boolean deleteallproducts();
+
+	public List<Products> deleteproduct(long id);
+
+	public Products addcourse(Products products);
+
+	public Products updatecourse(Products products);
+
+	public void productdelete(long long1);
+
+	
+	
+}
+
+
+===================================================== Service Impl ==================================================================
+
+
+package com.cu.prods.serviceImpl;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+import com.cu.prods.entity.Products;
+import com.cu.prods.service.Productservice;
+
+@Service
+public class productserviceImpl implements Productservice {
+
+    List<Products> list;
+
+    public productserviceImpl() {
+        list = new ArrayList<>();
+        list.add(new Products(1, "Laptop", "High-performance laptop with 16GB RAM and 512GB SSD"));
+        list.add(new Products(2, "Smartphone", "Latest model with 5G support and 128GB storage"));
+        list.add(new Products(3, "Headphones", "Noise-canceling over-ear headphones with deep bass"));
+        list.add(new Products(4, "Watch", "Smartwatch with heart rate monitoring and fitness tracking"));
+        list.add(new Products(5, "Bluetooth Speaker", "Portable Bluetooth speaker with 12 hours of battery life"));
+        list.add(new Products(6, "Keyboard", "Mechanical keyboard with RGB backlighting"));
+        list.add(new Products(7, "Mouse", "Wireless ergonomic mouse with precision tracking"));
+        list.add(new Products(8, "Tablet", "10-inch tablet with HD display and long battery life"));
+        list.add(new Products(9, "Camera", "DSLR camera with 24MP sensor and 4K video recording"));
+        list.add(new Products(10, "Smart TV", "55-inch 4K Smart TV with built-in streaming apps"));
+
+    }
+
+    @Override
+    public List<Products> getProductsservice() {
+        return list;
+    }
+
+    // For removing all Product from list
+    @Override
+    public boolean deleteallproducts() {
+        list.clear(); // Clears the list
+        return list.isEmpty(); // Returns true if the list is empty after clearing
+    }
+
+    @Override
+    public Products getproduct(long id) {
+        // Find product by id
+        for (Products product : list) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null; // Return null if product with given ID is not found
+    }
+
+    // For removing Product as per id from list
+    @Override
+    public List<Products> deleteproduct(long id) {
+        Products p = null;
+
+        // Iterate through the list and find the product to remove
+        for (Products product : list) {
+            if (product.getId() == id) {
+                p = product; // Found the product
+                list.remove(product); // Remove the product from the list
+                break; // Exit loop once the product is removed
+            }
+        }
+
+        // Return the remaining products (updated list) after deletion
+        return list;
+    }
+
+	@Override
+	public Products addcourse(Products products) {
+		// TODO Auto-generated method stub
+		list.add(products);
+		
+		return products;
+	}
+
+	@Override
+	public Products updatecourse(Products products) {
+		
+		list.forEach(e ->{
+			if(e.getId() == products.getId()) {
+				e.setTitle(products.getTitle());
+				e.setDescription(products.getDescription());
+			}
+		});
+		
+		return products;
+	}
+
+	@Override
+	public void productdelete(long long1) {
+	     list= this.list.stream().filter(e->e.getId()!=long1).collect(Collectors.toList());
+		
+	}
+
+
+}
+
+===================================================== Pom.xml ==================================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>Products</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Products</name>
+	<description>Product base project</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
