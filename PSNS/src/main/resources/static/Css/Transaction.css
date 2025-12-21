@@ -1,0 +1,83 @@
+body {
+            background-color: #f6f8fb;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            min-height: 100vh;
+            position: fixed;
+            background: linear-gradient(180deg, #0b1d3a, #020617);
+            color: white;
+        }
+
+        .sidebar .logo {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar a {
+            color: #cfd8dc;
+            text-decoration: none;
+            padding: 14px 22px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .sidebar a.active,
+        .sidebar a:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .sidebar .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        /* Main */
+        .main {
+            margin-left: 260px;
+        }
+
+        /* Transaction badges */
+        .badge-credit {
+            background-color: #198754;
+        }
+
+        .badge-debit {
+            background-color: #dc3545;
+        }
+
+        .icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-credit {
+            background-color: #e7f6ec;
+            color: #198754;
+        }
+
+        .icon-debit {
+            background-color: #fdeaea;
+            color: #dc3545;
+        }
+
+        @media(max-width:768px){
+            .sidebar {
+                position: static;
+                width: 100%;
+            }
+            .main {
+                margin-left: 0;
+            }
+        }
