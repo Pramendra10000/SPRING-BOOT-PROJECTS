@@ -1,0 +1,121 @@
+body {
+    background-color: #f5f7fb;
+}
+
+/* ======================
+   Sidebar (SAME AS DASHBOARD)
+====================== */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0b1d3a, #020617);
+    color: #fff;
+    position: fixed;
+}
+
+.sidebar .brand {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar a {
+    color: #cfd8dc;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.sidebar .logout {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+/* ======================
+   Main Content
+====================== */
+.main-content {
+    margin-left: 260px;
+}
+
+/* ======================
+   Top Navbar (same as dashboard)
+====================== */
+.navbar {
+    background-color: #fff;
+    padding: 16px 24px;
+}
+
+/* ======================
+   Cards
+====================== */
+.card-box {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+/* ======================
+   Account Status
+====================== */
+.status-badge {
+    background-color: #198754;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+/* ======================
+   Bank Card (same level as balance-card)
+====================== */
+.bank-card {
+    background: linear-gradient(135deg, #0d6efd, #0047ab);
+    color: #fff;
+    border-radius: 16px;
+    padding: 25px;
+    height: 200px;
+}
+
+.bank-card .chip {
+    width: 45px;
+    height: 35px;
+    background-color: #facc15;
+    border-radius: 6px;
+}
+
+.bank-card h5 {
+    letter-spacing: 2px;
+}
+
+/* ======================
+   Buttons
+====================== */
+.btn-outline-primary {
+    border-radius: 12px;
+}
+
+/* ======================
+   Responsive
+====================== */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
