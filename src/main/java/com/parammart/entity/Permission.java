@@ -1,0 +1,38 @@
+package com.parammart.entity;
+
+
+public enum Permission {
+
+    // USER
+    USER_CREATE,
+    USER_READ,
+    USER_UPDATE,
+    USER_DELETE,
+
+    // PRODUCT
+    PRODUCT_CREATE,
+    PRODUCT_READ,
+    PRODUCT_UPDATE,
+    PRODUCT_DELETE,
+
+    // CATEGORY
+    CATEGORY_CREATE,
+    CATEGORY_READ,
+    CATEGORY_UPDATE,
+    CATEGORY_DELETE,
+
+    // BRAND
+    BRAND_CREATE,
+    BRAND_READ,
+    BRAND_UPDATE,
+    BRAND_DELETE,
+
+    // ORDER
+    ORDER_CREATE,
+    ORDER_READ,
+    ORDER_UPDATE,
+    ORDER_DELETE,
+
+    // REPORT
+    REPORT_READ
+}
