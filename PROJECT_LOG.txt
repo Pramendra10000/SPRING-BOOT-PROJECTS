@@ -32,3 +32,58 @@ FLUSH PRIVILEGES;
 ------------------------------------
 
 SHOW GRANTS FOR 'parammart'@'localhost';
+
+
+{
+"email": "pramendra10000@gmail.com",
+"password": "Pass@123"
+}
+
+After that use that token to authorization on top of swagger right corner , then hit any things it will work.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+After that all table created by jpa hibernate 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                   Project Flow
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+                     PARAMMART
+
+                    Authentication
+                         │
+         ┌───────────────┴────────────────┐
+         │                                │
+      Security                     Role & Permission
+         │                                │
+         └────────────────────────────────┘
+                         │
+                     Master Data
+                         │
+      Category ───── Brand ───── Product
+                         │
+                  Inventory Management
+                         │
+             Customer ───── Supplier
+                         │
+                 Purchase & Sales
+                         │
+              Orders ───── Payments
+                         │
+                    Dashboard
+                         │
+                Reports & Analytics
+                         │
+                React Admin Portal
+                
+                
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                       
+                       
+                       
+                
+                

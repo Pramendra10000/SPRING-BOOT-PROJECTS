@@ -1,0 +1,442 @@
+2026-07-19T18:29:11.806+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:29:11.806+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:29:11.807+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:29:12.207+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:29:12.223+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:29:12.345+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:29:12.346+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:29:12.346+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:29:12.371+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:29:12.371+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 524 ms
+2026-07-19T18:29:12.443+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:29:12.445+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:29:12.453+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:29:12.454+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-68 - Starting...
+2026-07-19T18:29:12.459+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-68 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54c68cc8
+2026-07-19T18:29:12.459+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-68 - Start completed.
+2026-07-19T18:29:12.461+05:30  WARN 26400 --- [param-mart] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-19T18:29:12.461+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-68)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:29:12.556+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:29:12.589+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:29:12.651+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:29:12.677+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:29:12.677+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:29:12.788+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:29:12.908+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:29:13.090+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:29:13.105+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:29:13.112+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 2.39 seconds (process running for 4739.572)
+2026-07-19T18:29:13.121+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   LogFileWebEndpointAutoConfiguration#logFileWebEndpoint matched:
+      - Log File found logging.file.name logs/parammart.log (LogFileWebEndpointAutoConfiguration.LogFileCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.boot.actuate.logging.LogFileWebEndpoint; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-07-19T18:30:27.161+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:30:27.185+05:30  INFO 26400 --- [param-mart] [Thread-278] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:30:27.214+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:30:27.241+05:30  INFO 26400 --- [param-mart] [Thread-278] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:30:27.244+05:30  INFO 26400 --- [param-mart] [Thread-278] com.zaxxer.hikari.HikariDataSource       : HikariPool-68 - Shutdown initiated...
+2026-07-19T18:30:27.252+05:30  INFO 26400 --- [param-mart] [Thread-278] com.zaxxer.hikari.HikariDataSource       : HikariPool-68 - Shutdown completed.
+2026-07-19T18:30:27.732+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:30:27.732+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:30:27.732+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:30:28.381+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:30:28.398+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:30:28.596+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:30:28.596+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:30:28.596+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:30:28.651+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:30:28.651+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 919 ms
+2026-07-19T18:30:28.763+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:30:28.766+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:30:28.776+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:30:28.778+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-69 - Starting...
+2026-07-19T18:30:28.786+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-69 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f41e1c5
+2026-07-19T18:30:28.787+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-69 - Start completed.
+2026-07-19T18:30:28.788+05:30  WARN 26400 --- [param-mart] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-19T18:30:28.788+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-69)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:30:28.976+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:30:29.014+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:30:29.120+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:30:29.181+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:30:29.181+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:30:29.431+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:30:29.759+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:30:30.165+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:30:30.231+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:30:30.253+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 2.65 seconds (process running for 4816.72)
+2026-07-19T18:30:30.264+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:30:37.854+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:30:37.861+05:30  INFO 26400 --- [param-mart] [Thread-282] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:30:37.867+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:30:37.870+05:30  INFO 26400 --- [param-mart] [Thread-282] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:30:37.870+05:30  INFO 26400 --- [param-mart] [Thread-282] com.zaxxer.hikari.HikariDataSource       : HikariPool-69 - Shutdown initiated...
+2026-07-19T18:30:37.875+05:30  INFO 26400 --- [param-mart] [Thread-282] com.zaxxer.hikari.HikariDataSource       : HikariPool-69 - Shutdown completed.
+2026-07-19T18:30:38.023+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:30:38.023+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:30:38.023+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:30:38.388+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:30:38.412+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:30:38.530+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:30:38.531+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:30:38.531+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:30:38.556+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:30:38.556+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 526 ms
+2026-07-19T18:30:38.625+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:30:38.626+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:30:38.632+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:30:38.633+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-70 - Starting...
+2026-07-19T18:30:38.639+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-70 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55d855a2
+2026-07-19T18:30:38.639+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-70 - Start completed.
+2026-07-19T18:30:38.640+05:30  WARN 26400 --- [param-mart] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-19T18:30:38.640+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-70)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:30:38.710+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:30:38.753+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:30:38.804+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:30:38.828+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:30:38.829+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:30:38.932+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:30:39.060+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:30:39.249+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:30:39.267+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:30:39.275+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 1.293 seconds (process running for 4825.735)
+2026-07-19T18:30:39.276+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:31:00.316+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:31:00.316+05:30  INFO 26400 --- [param-mart] [Thread-286] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:31:00.415+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:31:00.432+05:30  INFO 26400 --- [param-mart] [Thread-286] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:00.432+05:30  INFO 26400 --- [param-mart] [Thread-286] com.zaxxer.hikari.HikariDataSource       : HikariPool-70 - Shutdown initiated...
+2026-07-19T18:31:00.432+05:30  INFO 26400 --- [param-mart] [Thread-286] com.zaxxer.hikari.HikariDataSource       : HikariPool-70 - Shutdown completed.
+2026-07-19T18:31:00.734+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:31:00.735+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:31:00.735+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:31:02.115+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:31:02.149+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:31:02.366+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:31:02.366+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:31:02.366+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:31:02.438+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:31:02.438+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1699 ms
+2026-07-19T18:31:02.598+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:31:02.603+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:31:02.616+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:31:02.616+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-71 - Starting...
+2026-07-19T18:31:02.618+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-71 - Added connection com.mysql.cj.jdbc.ConnectionImpl@644f76de
+2026-07-19T18:31:02.618+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-71 - Start completed.
+2026-07-19T18:31:02.664+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-71)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:31:02.820+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:31:02.847+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:02.967+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:31:03.014+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:31:03.014+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:31:03.282+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:31:03.629+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:31:04.214+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:31:04.231+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:31:04.274+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 3.661 seconds (process running for 4850.735)
+2026-07-19T18:31:04.276+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:31:34.410+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:31:34.414+05:30  INFO 26400 --- [param-mart] [Thread-290] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:31:34.421+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:31:34.426+05:30  INFO 26400 --- [param-mart] [Thread-290] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:34.427+05:30  INFO 26400 --- [param-mart] [Thread-290] com.zaxxer.hikari.HikariDataSource       : HikariPool-71 - Shutdown initiated...
+2026-07-19T18:31:34.432+05:30  INFO 26400 --- [param-mart] [Thread-290] com.zaxxer.hikari.HikariDataSource       : HikariPool-71 - Shutdown completed.
+2026-07-19T18:31:34.558+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:31:34.558+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:31:34.558+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:31:34.810+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:31:34.824+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:31:34.926+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:31:34.926+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:31:34.926+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:31:34.948+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:31:34.949+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 389 ms
+2026-07-19T18:31:35.008+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:31:35.009+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:31:35.015+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:31:35.016+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-72 - Starting...
+2026-07-19T18:31:35.020+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-72 - Added connection com.mysql.cj.jdbc.ConnectionImpl@20515c1f
+2026-07-19T18:31:35.020+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-72 - Start completed.
+2026-07-19T18:31:35.021+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-72)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:31:35.095+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:31:35.133+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:35.180+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:31:35.204+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:31:35.205+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:31:35.305+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:31:35.431+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:31:35.616+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:31:35.630+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:31:35.634+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 1.118 seconds (process running for 4882.094)
+2026-07-19T18:31:35.636+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:31:46.309+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:31:46.310+05:30  INFO 26400 --- [param-mart] [Thread-294] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:31:46.315+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:31:46.317+05:30  INFO 26400 --- [param-mart] [Thread-294] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:46.318+05:30  INFO 26400 --- [param-mart] [Thread-294] com.zaxxer.hikari.HikariDataSource       : HikariPool-72 - Shutdown initiated...
+2026-07-19T18:31:46.319+05:30  INFO 26400 --- [param-mart] [Thread-294] com.zaxxer.hikari.HikariDataSource       : HikariPool-72 - Shutdown completed.
+2026-07-19T18:31:46.427+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:31:46.427+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:31:46.427+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:31:46.668+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:31:46.683+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:31:46.775+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:31:46.775+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:31:46.775+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:31:46.797+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:31:46.797+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 369 ms
+2026-07-19T18:31:46.851+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:31:46.852+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:31:46.856+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:31:46.856+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-73 - Starting...
+2026-07-19T18:31:46.860+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-73 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7fb281e8
+2026-07-19T18:31:46.860+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-73 - Start completed.
+2026-07-19T18:31:46.861+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-73)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:31:46.948+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:31:46.972+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:31:47.022+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:31:47.045+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:31:47.046+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:31:47.223+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:31:47.546+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:31:47.965+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:31:47.996+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:31:48.032+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 1.639 seconds (process running for 4894.496)
+2026-07-19T18:31:48.032+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:33:10.485+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:33:10.487+05:30  INFO 26400 --- [param-mart] [Thread-298] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:33:10.491+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:33:10.494+05:30  INFO 26400 --- [param-mart] [Thread-298] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:33:10.495+05:30  INFO 26400 --- [param-mart] [Thread-298] com.zaxxer.hikari.HikariDataSource       : HikariPool-73 - Shutdown initiated...
+2026-07-19T18:33:10.497+05:30  INFO 26400 --- [param-mart] [Thread-298] com.zaxxer.hikari.HikariDataSource       : HikariPool-73 - Shutdown completed.
+2026-07-19T18:33:10.653+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:33:10.653+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:33:10.653+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:33:10.909+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:33:10.926+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:33:11.033+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:33:11.034+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:33:11.034+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:33:11.052+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:33:11.052+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 397 ms
+2026-07-19T18:33:11.122+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:33:11.125+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:33:11.152+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:33:11.153+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-74 - Starting...
+2026-07-19T18:33:11.160+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-74 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b2b9dca
+2026-07-19T18:33:11.160+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-74 - Start completed.
+2026-07-19T18:33:11.162+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-74)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:33:11.211+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:33:11.237+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:33:11.286+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:33:11.310+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:33:11.310+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:33:11.420+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:33:11.553+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:33:11.739+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:33:11.755+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:33:11.761+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 1.173 seconds (process running for 4978.221)
+2026-07-19T18:33:11.764+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:33:18.337+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:33:18.339+05:30  INFO 26400 --- [param-mart] [Thread-302] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:33:18.345+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:33:18.352+05:30  INFO 26400 --- [param-mart] [Thread-302] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:33:18.353+05:30  INFO 26400 --- [param-mart] [Thread-302] com.zaxxer.hikari.HikariDataSource       : HikariPool-74 - Shutdown initiated...
+2026-07-19T18:33:18.354+05:30  INFO 26400 --- [param-mart] [Thread-302] com.zaxxer.hikari.HikariDataSource       : HikariPool-74 - Shutdown completed.
+2026-07-19T18:33:18.477+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19T18:33:18.477+05:30 DEBUG 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19T18:33:18.477+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T18:33:18.700+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T18:33:18.718+05:30  INFO 26400 --- [param-mart] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 4 JPA repository interfaces.
+2026-07-19T18:33:18.805+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T18:33:18.806+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T18:33:18.806+05:30  INFO 26400 --- [param-mart] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19T18:33:18.829+05:30  INFO 26400 --- [param-mart] [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2026-07-19T18:33:18.830+05:30  INFO 26400 --- [param-mart] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 352 ms
+2026-07-19T18:33:18.887+05:30  INFO 26400 --- [param-mart] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T18:33:18.889+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T18:33:18.893+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T18:33:18.894+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-75 - Starting...
+2026-07-19T18:33:18.897+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-75 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54925450
+2026-07-19T18:33:18.899+05:30  INFO 26400 --- [param-mart] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-75 - Start completed.
+2026-07-19T18:33:18.899+05:30  INFO 26400 --- [param-mart] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-75)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19T18:33:18.966+05:30  INFO 26400 --- [param-mart] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19T18:33:18.999+05:30  INFO 26400 --- [param-mart] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:33:19.052+05:30 DEBUG 26400 --- [param-mart] [restartedMain] c.p.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19T18:33:19.073+05:30  INFO 26400 --- [param-mart] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19T18:33:19.073+05:30  WARN 26400 --- [param-mart] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19T18:33:19.171+05:30  WARN 26400 --- [param-mart] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T18:33:19.300+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-07-19T18:33:19.468+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-19T18:33:19.487+05:30  INFO 26400 --- [param-mart] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-19T18:33:19.493+05:30  INFO 26400 --- [param-mart] [restartedMain] com.parammart.ParamMartApplication       : Started ParamMartApplication in 1.061 seconds (process running for 4985.953)
+2026-07-19T18:33:19.495+05:30  INFO 26400 --- [param-mart] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-07-19T18:35:06.068+05:30  INFO 26400 --- [param-mart] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-07-19T18:35:06.075+05:30  INFO 26400 --- [param-mart] [Thread-306] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19T18:35:06.080+05:30  INFO 26400 --- [param-mart] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-19T18:35:06.085+05:30  INFO 26400 --- [param-mart] [Thread-306] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T18:35:06.089+05:30  INFO 26400 --- [param-mart] [Thread-306] com.zaxxer.hikari.HikariDataSource       : HikariPool-75 - Shutdown initiated...
+2026-07-19T18:35:06.092+05:30  INFO 26400 --- [param-mart] [Thread-306] com.zaxxer.hikari.HikariDataSource       : HikariPool-75 - Shutdown completed.
+2026-07-19 18:35:06 INFO  com.parammart.ParamMartApplication - Starting ParamMartApplication using Java 21.0.8 with PID 26400 (C:\Users\HP\Music\PramMart\param-mart\target\classes started by HP in C:\Users\HP\Music\PramMart\param-mart)
+2026-07-19 18:35:06 DEBUG com.parammart.ParamMartApplication - Running with Spring Boot v3.5.0, Spring v6.2.7
+2026-07-19 18:35:06 INFO  com.parammart.ParamMartApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-19 18:35:06 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19 18:35:06 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 4 JPA repository interfaces.
+2026-07-19 18:35:06 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-19 18:35:06 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-19 18:35:06 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.41]
+2026-07-19 18:35:06 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-19 18:35:06 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 459 ms
+2026-07-19 18:35:06 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19 18:35:06 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-19 18:35:06 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19 18:35:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Starting...
+2026-07-19 18:35:06 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-76 - Added connection com.mysql.cj.jdbc.ConnectionImpl@520445b
+2026-07-19 18:35:06 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Start completed.
+2026-07-19 18:35:06 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-76)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-19 18:35:07 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-19 18:35:07 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19 18:35:07 DEBUG c.p.security.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-07-19 18:35:07 INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-19 18:35:07 WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-19 18:35:07 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2026-07-19 18:35:07 INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-07-19 18:35:07 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-19 18:35:07 INFO  com.parammart.ParamMartApplication - Started ParamMartApplication in 1.339 seconds (process running for 5094.047)
+2026-07-19 18:35:07 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   JpaBaseConfiguration.JpaWebConfiguration:
+      Did not match:
+         - @ConditionalOnBooleanProperty (spring.jpa.open-in-view=true) found different value in property 'spring.jpa.open-in-view' (OnPropertyCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-07-19 18:50:09 INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2026-07-19 18:50:09 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-19 18:50:09 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-07-19 18:50:09 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19 18:50:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Shutdown initiated...
+2026-07-19 18:50:09 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Shutdown completed.

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.parammart.entity.Category;
+import com.parammart.exception.ResourceNotFoundException;
 import com.parammart.repository.CategoryRepository;
 import com.parammart.service.CategoryService;
 
@@ -39,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         return repository.findById(id)
                 .orElseThrow(
-                 () -> new RuntimeException("Category not found")
+                 () ->  new ResourceNotFoundException("Category not found")
                 );
     }
 

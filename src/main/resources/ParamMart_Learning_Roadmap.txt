@@ -1,0 +1,80 @@
+PARAMMART LEARNING ROADMAP
+
+Mission
+
+Build production-ready Spring Boot + React while learning concepts.
+
+BigDecimal
+
+-   Why not double
+-   Precision
+-   Enterprise usage
+
+Transactional
+
+-   ACID
+-   Commit/Rollback
+-   Propagation
+-   Isolation
+
+JWT
+
+-   Stateless
+-   Tokens
+-   Structure
+
+JPA
+
+-   Persistence Context
+-   Lifecycle
+-   Lazy/Eager
+-   Cascade
+-   Dirty Checking
+
+Security
+
+-   Authentication vs Authorization
+-   Roles vs Permissions
+
+Patterns
+
+-   Repository
+-   Service
+-   DTO
+-   Factory
+-   Builder
+-   Strategy
+-   DI
+-   SOLID
+
+Tech
+
+Backend: Java 21, Spring Boot, Security, JWT, JPA, Hibernate, MySQL,
+Swagger. Frontend: React, Vite, Axios, MUI. DevOps: Docker, GitHub,
+CI/CD.
+
+Workflow
+
+Requirement -> Design -> Implementation -> Testing -> Concept ->
+Refactoring
+
+
+=========================================================== Logger =================================================================
+
+simple in spring boot 
+
+import lombok.extern.slf4j.Slf4j;
+
+and add @@Slf4j above class boom logger on all class.
+
+
+log.info("Application Started");
+
+log.warn("Duplicate Product");
+
+log.error("Unexpected Exception", ex);
+
+log.debug("User {}", username)
+=============================================================================================================================================
+
+

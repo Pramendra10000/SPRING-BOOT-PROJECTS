@@ -1,0 +1,21 @@
+package com.parammart.dto.request;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public record BrandRequest(
+
+        @NotBlank(message = "Brand name is required")
+        @Size(max = 100, message = "Brand name cannot exceed 100 characters")
+        String name,
+
+        @Size(max = 500, message = "Description cannot exceed 500 characters")
+        String description,
+
+        Boolean active,
+
+        @NotNull(message = "Category Id is required")
+        Long categoryId
+
+) {}

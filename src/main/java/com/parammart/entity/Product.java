@@ -1,11 +1,10 @@
 package com.parammart.entity;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "products")
@@ -13,27 +12,53 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "category")
+@Builder
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 150)
     private String name;
 
-    private String brand;
+    @Column(nullable = false,unique = true,length = 50)
+    private String sku;
 
-    private double price;
+    @Column(length = 1000)
+    private String description;
 
-    private int stock;
+    @Column(nullable = false,precision = 12,scale = 2)
+    private BigDecimal price;
 
-    private boolean active = true;
+    @Column(nullable = false)
+    private Integer stock;
 
+    @Builder.Default
+    private Boolean active=true;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name="category_id")
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="brand_id")
+    private Brand brand;
+
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    void prePersist(){
+        createdAt=LocalDateTime.now();
+        updatedAt=LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        updatedAt=LocalDateTime.now();
+    }
 
 }

@@ -1,25 +1,22 @@
 package com.parammart.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import com.parammart.dto.ProductRequestDTO;
-import com.parammart.dto.ProductResponseDTO;
-import com.parammart.entity.Product;
+import com.parammart.dto.request.ProductRequest;
+import com.parammart.dto.response.ProductResponse;
 
 public interface ProductService {
 
-    
-    String addProduct(ProductRequestDTO dto);
+    ProductResponse createProduct(ProductRequest request);
 
-    List<ProductResponseDTO> getAllProducts();
+    ProductResponse updateProduct(Long id, ProductRequest request);
 
-    ProductResponseDTO getProductById(String id);
-    
-    
-    String updateProduct(String id, Product product);
-    
-    String deleteProduct(String id);
+    ProductResponse getProduct(Long id);
 
-	String updateProduct(String id, ProductRequestDTO dto);
-    
+    Page<ProductResponse> getAllProducts(Pageable pageable);
+
+    Page<ProductResponse> searchProducts(String keyword, Pageable pageable);
+
+    void deleteProduct(Long id);
 }
