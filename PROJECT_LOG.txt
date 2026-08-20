@@ -83,7 +83,21 @@ After that all table created by jpa hibernate
                 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                        
-                       
+        For Taking Daily backup of SQL DP we need to follow below command to the command prompt
+         so that we can get dumps of SQL data                
+         
+         mysqldump -u root -p --databases parammart_db --routines --events --triggers --single-transaction --hex-blob --default-character-set=utf8mb4 > parammart_db_backup.sql
+         Enter password: ****
+         
+         dir parammart_db_backup.sql  // tofind file path 
+         
+         Path :- what ever you will give so initially you can provide them like 
+         
+         cd C:\Users\UMENDRA SINGH\git\SPRING-BOOT-PROJECTS\src\main\webapp\WEB-INF\IMP Files
+         
+         Then do the above command of SQL so it will be automatically save on that file but previously you may have to delete that one which was existing 
+         
+         
                        
                 
                 
