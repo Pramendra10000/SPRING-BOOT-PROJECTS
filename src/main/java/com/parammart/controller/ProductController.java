@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.PageRequest;
 import com.parammart.dto.request.ProductRequest;
 import com.parammart.dto.response.ProductResponse;
 import com.parammart.service.ProductService;
@@ -31,7 +31,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public Page<ProductResponse> getAll(Pageable pageable) {
+    public Page<ProductResponse> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+
         return productService.getAllProducts(pageable);
     }
 

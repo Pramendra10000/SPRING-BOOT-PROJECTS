@@ -3,6 +3,7 @@ package com.parammart.service.impl;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.parammart.dto.request.ProductRequest;
 import com.parammart.dto.response.ProductResponse;
@@ -89,6 +90,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<ProductResponse> getAllProducts(Pageable pageable) {
 
         return productRepository.findAll(pageable)
