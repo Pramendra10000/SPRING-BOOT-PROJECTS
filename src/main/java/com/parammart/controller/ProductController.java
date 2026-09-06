@@ -30,6 +30,8 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
+   
+    /*
     @GetMapping
     public Page<ProductResponse> getAll(
             @RequestParam(defaultValue = "0") int page,
@@ -37,6 +39,14 @@ public class ProductController {
 
         Pageable pageable = PageRequest.of(page, size);
 
+        return productService.getAllProducts(pageable);
+    }
+    
+    */
+    
+    
+    @GetMapping
+    public Page<ProductResponse> getAll(Pageable pageable) {
         return productService.getAllProducts(pageable);
     }
 
