@@ -39,7 +39,18 @@ SHOW GRANTS FOR 'parammart'@'localhost';
 "password": "Pass@123"
 }
 
+
 After that use that token to authorization on top of swagger right corner , then hit any things it will work.
+
+----------- login of one user -------------------
+
+{
+  "firstName": "Tony",
+  "lastName": "Stark",
+  "email": "Tony@gmail.com",
+  "mobile": "6779809551",
+  "password": "Tony@123"
+}
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 After that all table created by jpa hibernate 
