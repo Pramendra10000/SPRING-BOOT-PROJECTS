@@ -39,7 +39,6 @@ public class ProductServiceImpl implements ProductService {
 
         log.info("Creating product with SKU: {}", request.sku());
 
-        // Check duplicate SKU
         if (productRepository.existsBySkuIgnoreCase(request.sku())) {
 
             log.warn("Duplicate SKU found: {}", request.sku());
@@ -49,19 +48,16 @@ public class ProductServiceImpl implements ProductService {
             );
         }
 
-        // Find category
         Category category = categoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Category not found with id: " + request.categoryId()
                 ));
 
-        // Find brand
         Brand brand = brandRepository.findById(request.brandId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Brand not found with id: " + request.brandId()
                 ));
 
-        // Build product
         Product product = Product.builder()
                 .name(request.name())
                 .sku(request.sku())
@@ -73,7 +69,6 @@ public class ProductServiceImpl implements ProductService {
                 .brand(brand)
                 .build();
 
-        // Save product
         Product savedProduct = productRepository.save(product);
 
         log.info(
@@ -97,14 +92,11 @@ public class ProductServiceImpl implements ProductService {
 
         log.info("Updating product with ID: {}", id);
 
-        // Find existing product
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Product not found with id: " + id
                 ));
 
-        // Check duplicate SKU
-        // Ignore the current product itself
         if (productRepository.existsBySkuIgnoreCaseAndIdNot(
                 request.sku(),
                 id
@@ -120,26 +112,22 @@ public class ProductServiceImpl implements ProductService {
             );
         }
 
-        // Find category
         Category category = categoryRepository.findById(request.categoryId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Category not found with id: " + request.categoryId()
                 ));
 
-        // Find brand
         Brand brand = brandRepository.findById(request.brandId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Brand not found with id: " + request.brandId()
                 ));
 
-        // Update product fields
         product.setName(request.name());
         product.setSku(request.sku());
         product.setDescription(request.description());
         product.setPrice(request.price());
         product.setStock(request.stock());
 
-        // Keep active handling consistent with create
         product.setActive(
                 request.active() == null
                         ? true
@@ -149,7 +137,6 @@ public class ProductServiceImpl implements ProductService {
         product.setCategory(category);
         product.setBrand(brand);
 
-        // Save updated product
         Product updatedProduct = productRepository.save(product);
 
         log.info(
@@ -193,7 +180,8 @@ public class ProductServiceImpl implements ProductService {
                 pageable.getPageSize()
         );
 
-        return productRepository.findAll(pageable)
+        return productRepository
+                .findAll(pageable)
                 .map(this::map);
     }
 
@@ -214,7 +202,169 @@ public class ProductServiceImpl implements ProductService {
         );
 
         return productRepository
-                .findByNameContainingIgnoreCase(keyword, pageable)
+                .findByNameContainingIgnoreCase(
+                        keyword,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // CATEGORY FILTER
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> getProductsByCategory(
+            Long categoryId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Fetching products for category ID: {}",
+                categoryId
+        );
+
+        return productRepository
+                .findByCategoryId(
+                        categoryId,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // SEARCH + CATEGORY
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> searchProductsByCategory(
+            String keyword,
+            Long categoryId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Searching products with keyword: {} in category ID: {}",
+                keyword,
+                categoryId
+        );
+
+        return productRepository
+                .findByNameContainingIgnoreCaseAndCategoryId(
+                        keyword,
+                        categoryId,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // BRAND FILTER
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> getProductsByBrand(
+            Long brandId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Fetching products for brand ID: {}",
+                brandId
+        );
+
+        return productRepository
+                .findByBrandId(
+                        brandId,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // SEARCH + BRAND
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> searchProductsByBrand(
+            String keyword,
+            Long brandId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Searching products with keyword: {} in brand ID: {}",
+                keyword,
+                brandId
+        );
+
+        return productRepository
+                .findByNameContainingIgnoreCaseAndBrandId(
+                        keyword,
+                        brandId,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // CATEGORY + BRAND FILTER
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> getProductsByCategoryAndBrand(
+            Long categoryId,
+            Long brandId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Fetching products for category ID: {} and brand ID: {}",
+                categoryId,
+                brandId
+        );
+
+        return productRepository
+                .findByCategoryIdAndBrandId(
+                        categoryId,
+                        brandId,
+                        pageable
+                )
+                .map(this::map);
+    }
+
+    // =========================================================
+    // SEARCH + CATEGORY + BRAND
+    // =========================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> searchProductsByCategoryAndBrand(
+            String keyword,
+            Long categoryId,
+            Long brandId,
+            Pageable pageable
+    ) {
+
+        log.debug(
+                "Searching products with keyword: {} in category ID: {} and brand ID: {}",
+                keyword,
+                categoryId,
+                brandId
+        );
+
+        return productRepository
+                .findByNameContainingIgnoreCaseAndCategoryIdAndBrandId(
+                        keyword,
+                        categoryId,
+                        brandId,
+                        pageable
+                )
                 .map(this::map);
     }
 

@@ -52,6 +52,13 @@ After that use that token to authorization on top of swagger right corner , then
   "password": "Tony@123"
 }
 
+---  login user -----
+
+{
+  "email": "Tony@gmail.com",
+  "password": "Tony@123"
+}
+
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 After that all table created by jpa hibernate 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -109,6 +116,7 @@ After that all table created by jpa hibernate
          Then do the above command of SQL so it will be automatically save on that file but previously you may have to delete that one which was existing 
          
          
+  +++++++++++++++++++++++++++++ FOR  REST MYSWL PASSWORD BELOW QUERY USED +++++++++++++++++++++++++++++++++++++++++
                        
-                
+      ALTER USER 'root'@'localhost' IDENTIFIED BY 'Root';          
                 

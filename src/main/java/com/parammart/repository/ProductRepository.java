@@ -1,6 +1,5 @@
 package com.parammart.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -17,14 +16,70 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Product> findBySkuIgnoreCase(String sku);
 
-    List<Product> findByCategoryId(Long categoryId);
+    // =========================================================
+    // CATEGORY FILTER
+    // =========================================================
 
-    List<Product> findByBrandId(Long brandId);
+    Page<Product> findByCategoryId(
+            Long categoryId,
+            Pageable pageable);
+
+    // =========================================================
+    // BRAND FILTER
+    // =========================================================
+
+    Page<Product> findByBrandId(
+            Long brandId,
+            Pageable pageable);
+
+    // =========================================================
+    // CATEGORY + BRAND FILTER
+    // =========================================================
+
+    Page<Product> findByCategoryIdAndBrandId(
+            Long categoryId,
+            Long brandId,
+            Pageable pageable);
+
+    // =========================================================
+    // SEARCH
+    // =========================================================
 
     Page<Product> findByNameContainingIgnoreCase(
             String keyword,
-            Pageable pageable
-    );
+            Pageable pageable);
+
+    // =========================================================
+    // SEARCH + CATEGORY
+    // =========================================================
+
+    Page<Product> findByNameContainingIgnoreCaseAndCategoryId(
+            String keyword,
+            Long categoryId,
+            Pageable pageable);
+
+    // =========================================================
+    // SEARCH + BRAND
+    // =========================================================
+
+    Page<Product> findByNameContainingIgnoreCaseAndBrandId(
+            String keyword,
+            Long brandId,
+            Pageable pageable);
+
+    // =========================================================
+    // SEARCH + CATEGORY + BRAND
+    // =========================================================
+
+    Page<Product> findByNameContainingIgnoreCaseAndCategoryIdAndBrandId(
+            String keyword,
+            Long categoryId,
+            Long brandId,
+            Pageable pageable);
+
+    // =========================================================
+    // ACTIVE PRODUCTS
+    // =========================================================
 
     Page<Product> findByActiveTrue(Pageable pageable);
 }
