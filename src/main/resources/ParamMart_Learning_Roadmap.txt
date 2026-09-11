@@ -88,3 +88,121 @@ log.debug("User {}", username)
 ➡️ React UI
 =============================================================================================================================================
 
+Now we are going to create image section formthe produvt
+
+                    PARAMMART
+                        │
+                        ▼
+                 React Frontend
+                        │
+                        ▼
+                 Spring Boot API
+                        │
+          ┌─────────────┴─────────────┐
+          │                           │
+          ▼                           ▼
+       MySQL                     Cloudflare R2
+          │                           │
+          │                           │
+    ProductMedia              Actual files
+          │                    ├── images
+          │                    └── videos
+          │
+          └──────────────┐
+                         ▼
+                    Media URLs
+                         │
+                         ▼
+                    React Gallery
+                    
+
+                    
+ Admin
+  ↓
+Create Product
+  ↓
+Upload 5 images + 1 video
+  ↓
+Spring Boot
+  ↓
+R2
+  ↓
+ProductMedia records
+  ↓
+Customer Product Card
+  ↓
+Primary Image
+  ↓
+Product Details
+  ↓
+Complete Gallery + Video
+
+
+
+
+
+                    PARAMMART
+                        │
+                        ▼
+                ┌───────────────┐
+                │  Spring Boot  │
+                │ Media Service │
+                └───────┬───────┘
+                        │
+             ┌──────────┴──────────┐
+             │                     │
+             ▼                     ▼
+        MySQL Database        Object Storage
+        ──────────────        ──────────────
+        Product              Cloudflare R2
+        ProductMedia         actual files
+        Media metadata       JPG / PNG / WEBP
+                             MP4 / etc.
+             │                     │
+             └──────────┬──────────┘
+                        ▼
+                    React UI
+                    
+                    
+                    
+                    
+                    Then we have this foundation
+                    
+                    
+                    
+┌──────────────────────────┐
+│         products         │
+├──────────────────────────┤
+│ id PK                    │
+│ name                     │
+│ sku                      │
+│ price                    │
+│ stock                    │
+│ ...                      │
+└────────────┬─────────────┘
+             │
+             │ 1
+             │
+             │
+             │ *
+┌────────────▼─────────────┐
+│      product_media       │
+├──────────────────────────┤
+│ id PK                    │
+│ product_id FK            │
+│ media_type                │
+│ file_name                 │
+│ storage_key UNIQUE        │
+│ media_url                 │
+│ content_type              │
+│ file_size                 │
+│ is_primary                │
+│ display_order             │
+│ alt_text                  │
+│ active                    │
+│ created_at                │
+│ updated_at                │
+└──────────────────────────┘
+
+
+

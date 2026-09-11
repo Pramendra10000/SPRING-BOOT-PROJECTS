@@ -1,24 +1,24 @@
 package com.parammart.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import lombok.RequiredArgsConstructor;
-import java.util.List;
-
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import lombok.RequiredArgsConstructor;
 
 @EnableMethodSecurity
 @Configuration
@@ -30,54 +30,125 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    	http
-        .cors(cors -> {})
+        http
+            // =====================================================
+            // CORS
+            // =====================================================
+            .cors(cors -> {})
 
-        .csrf(csrf -> csrf.disable())
+            // =====================================================
+            // CSRF
+            // =====================================================
+            .csrf(csrf -> csrf.disable())
 
-        .sessionManagement(session ->
-            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            // =====================================================
+            // SESSION
+            // =====================================================
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
+                )
+            )
 
-            .authorizeHttpRequests(auth->auth
+            // =====================================================
+            // AUTHORIZATION
+            // =====================================================
+            .authorizeHttpRequests(auth -> auth
 
-                    .requestMatchers(
-                            "/api/auth/**",
-                            "/swagger-ui/**",
-                            "/v3/api-docs/**")
-                    .permitAll()
+                // -------------------------------------------------
+                // PUBLIC AUTHENTICATION APIs
+                // -------------------------------------------------
+                .requestMatchers(
+                    "/api/auth/**",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**"
+                )
+                .permitAll()
 
-                    .requestMatchers("/api/admin/**")
-                    .hasRole("ADMIN")
+                // -------------------------------------------------
+                // PUBLIC PRODUCT CATALOG - CATEGORIES
+                // -------------------------------------------------
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/api/categories/**"
+                )
+                .permitAll()
 
-                    .requestMatchers("/api/manager/**")
-                    .hasRole("MANAGER")
+                // -------------------------------------------------
+                // PUBLIC PRODUCT CATALOG - BRANDS
+                // -------------------------------------------------
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/api/brands/**"
+                )
+                .permitAll()
 
-                    .requestMatchers("/api/employee/**")
-                    .hasRole("EMPLOYEE")
+                // -------------------------------------------------
+                // ADMIN APIs
+                // -------------------------------------------------
+                .requestMatchers("/api/admin/**")
+                .hasRole("ADMIN")
 
-                    .requestMatchers("/api/customer/**")
-                    .hasRole("CUSTOMER")
-                    
-                    .requestMatchers(HttpMethod.GET, "/api/categories/**")
-                    .hasAuthority("CATEGORY_READ")
+                // -------------------------------------------------
+                // MANAGER APIs
+                // -------------------------------------------------
+                .requestMatchers("/api/manager/**")
+                .hasRole("MANAGER")
 
-                    .requestMatchers(HttpMethod.POST, "/api/categories/**")
-                    .hasAuthority("CATEGORY_CREATE")
+                // -------------------------------------------------
+                // EMPLOYEE APIs
+                // -------------------------------------------------
+                .requestMatchers("/api/employee/**")
+                .hasRole("EMPLOYEE")
 
-                    .requestMatchers(HttpMethod.PUT, "/api/categories/**")
-                    .hasAuthority("CATEGORY_UPDATE")
+                // -------------------------------------------------
+                // CUSTOMER APIs
+                // -------------------------------------------------
+                .requestMatchers("/api/customer/**")
+                .hasRole("CUSTOMER")
 
-                    .requestMatchers(HttpMethod.DELETE, "/api/categories/**")
-                    .hasAuthority("CATEGORY_DELETE")
+                // -------------------------------------------------
+                // CATEGORY MANAGEMENT
+                // -------------------------------------------------
+                .requestMatchers(
+                    HttpMethod.POST,
+                    "/api/categories/**"
+                )
+                .hasAuthority("CATEGORY_CREATE")
 
-                    .anyRequest()
-                    .authenticated())
+                .requestMatchers(
+                    HttpMethod.PUT,
+                    "/api/categories/**"
+                )
+                .hasAuthority("CATEGORY_UPDATE")
 
-            .addFilterBefore(jwtFilter,
-                    UsernamePasswordAuthenticationFilter.class);
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/api/categories/**"
+                )
+                .hasAuthority("CATEGORY_DELETE")
+
+                // -------------------------------------------------
+                // EVERYTHING ELSE
+                // -------------------------------------------------
+                .anyRequest()
+                .authenticated()
+            )
+
+            // =====================================================
+            // JWT FILTER
+            // =====================================================
+            .addFilterBefore(
+                jwtFilter,
+                UsernamePasswordAuthenticationFilter.class
+            );
 
         return http.build();
     }
+
+    // =========================================================
+    // AUTHENTICATION MANAGER
+    // =========================================================
 
     @Bean
     AuthenticationManager authenticationManager(
@@ -86,45 +157,52 @@ public class SecurityConfig {
 
         return config.getAuthenticationManager();
     }
-    
+
+    // =========================================================
+    // DAO AUTHENTICATION PROVIDER
+    // =========================================================
+
     @Bean
     DaoAuthenticationProvider authenticationProvider(
             CustomUserDetailsService service,
-            PasswordEncoder encoder){
+            PasswordEncoder encoder) {
 
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
 
         provider.setUserDetailsService(service);
-
         provider.setPasswordEncoder(encoder);
 
         return provider;
     }
-    
-    
+
+    // =========================================================
+    // CORS CONFIGURATION
+    // =========================================================
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
+        CorsConfiguration configuration =
+                new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+            List.of("http://localhost:5173")
         );
 
         configuration.setAllowedMethods(
-                List.of(
-                        "GET",
-                        "POST",
-                        "PUT",
-                        "DELETE",
-                        "PATCH",
-                        "OPTIONS"
-                )
+            List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"
+            )
         );
 
         configuration.setAllowedHeaders(
-                List.of("*")
+            List.of("*")
         );
 
         configuration.setAllowCredentials(true);
@@ -133,11 +211,10 @@ public class SecurityConfig {
                 new UrlBasedCorsConfigurationSource();
 
         source.registerCorsConfiguration(
-                "/**",
-                configuration
+            "/**",
+            configuration
         );
 
         return source;
     }
-
 }

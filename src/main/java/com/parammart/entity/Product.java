@@ -5,6 +5,12 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToMany;
+
 
 @Entity
 @Table(name = "products")
@@ -60,5 +66,13 @@ public class Product {
     void preUpdate(){
         updatedAt=LocalDateTime.now();
     }
+    
+    @OneToMany(
+    	    mappedBy = "product",
+    	    cascade = CascadeType.ALL,
+    	    orphanRemoval = true
+    	)
+    	@Builder.Default
+    	private List<ProductMedia> media = new ArrayList<>();
 
 }

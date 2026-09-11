@@ -54,10 +54,26 @@ After that use that token to authorization on top of swagger right corner , then
 
 ---  login user -----
 
+Role :- Customer
 {
   "email": "Tony@gmail.com",
   "password": "Tony@123"
 }
+
+Role :- Maneger
+{
+  "email": "rahul@abc.com",
+  "password": "Test@123"
+}
+
+
+Role :- Admin
+{
+  "email": "param@gmail.com",
+  "password": "Test@123"
+}
+
+
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 After that all table created by jpa hibernate 
@@ -103,6 +119,9 @@ After that all table created by jpa hibernate
                        
         For Taking Daily backup of SQL DP we need to follow below command to the command prompt
          so that we can get dumps of SQL data                
+         
+         mysqldump -u root -p --routines --triggers --databases parammart_db > database_dump_11-09-2026.sql
+         Enter password: ****
          
          mysqldump -u root -p --databases parammart_db --routines --events --triggers --single-transaction --hex-blob --default-character-set=utf8mb4 > parammart_db_backup.sql
          Enter password: ****

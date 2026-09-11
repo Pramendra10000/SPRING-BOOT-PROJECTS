@@ -1,5 +1,3 @@
-
-
 package com.parammart.controller;
 
 import java.util.List;
@@ -23,73 +21,67 @@ import com.parammart.service.CategoryService;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
+    private final CategoryService service;
 
-private final CategoryService service;
+    public CategoryController(CategoryService service) {
+        this.service = service;
+    }
 
+    // =========================================================
+    // PUBLIC CATALOG APIs
+    // =========================================================
 
-public CategoryController(CategoryService service){
-    this.service = service;
-}
+    @GetMapping
+    public ResponseEntity<List<Category>> getAll() {
 
+        return ResponseEntity.ok(
+            service.getAllCategories()
+        );
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getById(
+            @PathVariable Long id) {
 
-@PostMapping
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<Category> create(
-        @RequestBody Category category){
+        return ResponseEntity.ok(
+            service.getCategoryById(id)
+        );
+    }
 
-    return ResponseEntity
+    // =========================================================
+    // CATEGORY MANAGEMENT
+    // =========================================================
+
+    @PostMapping
+    @PreAuthorize("hasAuthority('CATEGORY_CREATE')")
+    public ResponseEntity<Category> create(
+            @RequestBody Category category) {
+
+        return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(service.createCategory(category));
-}
+    }
 
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('CATEGORY_UPDATE')")
+    public ResponseEntity<Category> update(
+            @PathVariable Long id,
+            @RequestBody Category category) {
 
-
-@GetMapping
-@PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-public ResponseEntity<List<Category>> getAll(){
-
-    return ResponseEntity.ok(
-            service.getAllCategories()
-    );
-}
-
-
-
-@GetMapping("/{id}")
-public ResponseEntity<Category> getById(
-        @PathVariable Long id){
-
-    return ResponseEntity.ok(
-            service.getCategoryById(id)
-    );
-}
-
-
-
-@PutMapping("/{id}")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<Category> update(
-        @PathVariable Long id,
-        @RequestBody Category category){
-
-    return ResponseEntity.ok(
+        return ResponseEntity.ok(
             service.updateCategory(id, category)
-    );
-}
+        );
+    }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('CATEGORY_DELETE')")
+    public ResponseEntity<String> delete(
+            @PathVariable Long id) {
 
+        service.deleteCategory(id);
 
-@DeleteMapping("/{id}")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<String> delete(
-        @PathVariable Long id){
-
-    service.deleteCategory(id);
-
-    return ResponseEntity.ok(
+        return ResponseEntity.ok(
             "Category deleted successfully"
-    );
-}
-
+        );
+    }
 }
