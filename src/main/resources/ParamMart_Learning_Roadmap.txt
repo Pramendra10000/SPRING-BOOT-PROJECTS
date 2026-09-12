@@ -204,5 +204,45 @@ Complete Gallery + Video
 │ updated_at                │
 └──────────────────────────┘
 
+PHASE 1 ✅
+Database
+   ↓
+ProductMedia entity
+   ↓
+FK + indexes
 
+PHASE 2 ← NOW
+DTO
+   ↓
+Repository
+   ↓
+Service
+   ↓
+Controller
+   ↓
+GET media API
+
+PHASE 3
+Storage abstraction
+   ↓
+Local storage
+   ↓
+Test physical upload
+
+PHASE 4
+Cloudflare R2
+   ↓
+Real cloud upload
+
+PHASE 5
+ProductResponse
+   ↓
+Primary image
+   ↓
+React ProductCard
+
+PHASE 6
+Product Details
+   ↓
+Gallery + video
 
