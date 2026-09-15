@@ -19,6 +19,10 @@ public interface ProductMediaRepository extends JpaRepository<ProductMedia, Long
 
     Optional<ProductMedia> findByProductIdAndIsPrimaryTrueAndActiveTrue(Long productId);
 
+    List<ProductMedia> findByProductIdInAndIsPrimaryTrueAndActiveTrue(
+            List<Long> productIds
+    );
+    
     Optional<ProductMedia> findByIdAndProductId(Long id, Long productId);
 
     boolean existsByProductIdAndIsPrimaryTrueAndActiveTrue(Long productId);

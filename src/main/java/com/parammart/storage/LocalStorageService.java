@@ -9,11 +9,17 @@ import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@ConditionalOnProperty(
+        name = "app.storage.supabase.enabled",
+        havingValue = "false",
+        matchIfMissing = true
+)
 public class LocalStorageService implements StorageService {
 
     private final Path rootLocation;
@@ -109,21 +115,28 @@ public class LocalStorageService implements StorageService {
 
     @Override
     public void delete(String storageKey) {
+
         if (storageKey == null || storageKey.isBlank()) {
             return;
         }
 
-        Path targetPath = rootLocation.resolve(storageKey)
+        Path targetPath = rootLocation
+                .resolve(storageKey)
                 .normalize();
 
         if (!targetPath.startsWith(rootLocation)) {
-            throw new IllegalArgumentException("Invalid storage path");
+            throw new IllegalArgumentException(
+                    "Invalid storage path"
+            );
         }
 
         System.out.println("========================================");
         System.out.println("DELETE STORAGE KEY : " + storageKey);
         System.out.println("DELETE TARGET PATH : " + targetPath);
-        System.out.println("FILE EXISTS BEFORE : " + Files.exists(targetPath));
+        System.out.println(
+                "FILE EXISTS BEFORE : "
+                        + Files.exists(targetPath)
+        );
         System.out.println("ROOT LOCATION     : " + rootLocation);
         System.out.println("========================================");
 
@@ -131,7 +144,8 @@ public class LocalStorageService implements StorageService {
             Files.deleteIfExists(targetPath);
 
             System.out.println(
-                    "FILE EXISTS AFTER  : " + Files.exists(targetPath)
+                    "FILE EXISTS AFTER  : "
+                            + Files.exists(targetPath)
             );
 
         } catch (IOException ex) {
@@ -149,7 +163,8 @@ public class LocalStorageService implements StorageService {
             return false;
         }
 
-        Path targetPath = rootLocation.resolve(storageKey)
+        Path targetPath = rootLocation
+                .resolve(storageKey)
                 .normalize();
 
         if (!targetPath.startsWith(rootLocation)) {

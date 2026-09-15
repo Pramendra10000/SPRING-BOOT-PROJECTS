@@ -122,10 +122,14 @@ After that all table created by jpa hibernate
                 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                        
-        For Taking Daily backup of SQL DP we need to follow below command to the command prompt
-         so that we can get dumps of SQL data                
+         For Taking Daily backup of SQL DP we need to follow below command to the command prompt
+         so that we can get dumps of SQL data       
          
-         mysqldump -u root -p --routines --triggers --databases parammart_db > database_dump_12-09-2026.sql
+         "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --routines --triggers --databases
+          parammart_db > "%USERPROFILE%\Documents\database_dump_15-09-2026.sql"
+         Enter password: ****         
+         
+         mysqldump -u root -p --routines --triggers --databases parammart_db > database_dump_16-09-2026.sql
          Enter password: ****
          
          mysqldump -u root -p --databases parammart_db --routines --events --triggers --single-transaction --hex-blob --default-character-set=utf8mb4 > parammart_db_backup.sql
@@ -144,3 +148,7 @@ After that all table created by jpa hibernate
                        
       ALTER USER 'root'@'localhost' IDENTIFIED BY 'Root';          
                 
+  +++++++++++++++++++++++++++++SUPABASE DETAILS+++++++++++++++++++++++++++++++++++++++++
+               
+                app.storage.supabase.access-key=${f585761ff3052dabe7688bc29d020387}
+app.storage.supabase.secret-key=${c378dad4d2eca7b96bdd973a5f8d68d91a63f0c626a6553c2aad1371f538a389}

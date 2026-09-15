@@ -86,7 +86,7 @@ CREATE TABLE `brands` (
 
 LOCK TABLES `brands` WRITE;
 /*!40000 ALTER TABLE `brands` DISABLE KEYS */;
-INSERT INTO `brands` VALUES (2,0x01,'2026-08-20 05:41:15.889055','Samsung electronics brand offering smartphones and mobile devices.','Samsung','2026-08-20 05:41:15.889055',1),(3,0x01,'2026-08-20 05:41:28.540850','Apple brand offering premium smartphones and mobile devices.','Apple','2026-08-20 05:41:28.540850',1),(4,0x01,'2026-08-20 05:41:36.573758','OnePlus brand offering smartphones with powerful performance and modern features.','OnePlus','2026-08-20 05:41:36.573758',1),(5,0x01,'2026-08-20 05:41:44.234643','Dell brand offering laptops and computers for work, education and everyday use.','Dell','2026-08-20 05:41:44.234643',2),(6,0x01,'2026-08-20 05:41:51.517726','HP brand offering laptops, computers and technology products for work and personal use.','HP','2026-08-20 05:41:51.517726',2),(7,0x01,'2026-08-20 05:41:58.696834','Sony brand offering headphones, earbuds, speakers and premium audio products.','Sony','2026-08-20 05:41:58.696834',3),(8,0x01,'2026-08-20 05:42:05.762963','Logitech brand offering keyboards, mice, webcams and other computer accessories.','Logitech','2026-08-20 05:42:05.762963',6),(9,0x01,'2026-08-20 05:42:14.445296','Lenovo brand offering gaming laptops, gaming computers and gaming accessories.','Lenovo','2026-08-20 05:42:14.445296',8);
+INSERT INTO `brands` VALUES (2,_binary '','2026-08-20 05:41:15.889055','Samsung electronics brand offering smartphones and mobile devices.','Samsung','2026-08-20 05:41:15.889055',1),(3,_binary '','2026-08-20 05:41:28.540850','Apple brand offering premium smartphones and mobile devices.','Apple','2026-08-20 05:41:28.540850',1),(4,_binary '','2026-08-20 05:41:36.573758','OnePlus brand offering smartphones with powerful performance and modern features.','OnePlus','2026-08-20 05:41:36.573758',1),(5,_binary '','2026-08-20 05:41:44.234643','Dell brand offering laptops and computers for work, education and everyday use.','Dell','2026-08-20 05:41:44.234643',2),(6,_binary '','2026-08-20 05:41:51.517726','HP brand offering laptops, computers and technology products for work and personal use.','HP','2026-08-20 05:41:51.517726',2),(7,_binary '','2026-08-20 05:41:58.696834','Sony brand offering headphones, earbuds, speakers and premium audio products.','Sony','2026-08-20 05:41:58.696834',3),(8,_binary '','2026-08-20 05:42:05.762963','Logitech brand offering keyboards, mice, webcams and other computer accessories.','Logitech','2026-08-20 05:42:05.762963',6),(9,_binary '','2026-08-20 05:42:14.445296','Lenovo brand offering gaming laptops, gaming computers and gaming accessories.','Lenovo','2026-08-20 05:42:14.445296',8);
 /*!40000 ALTER TABLE `brands` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +176,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,0x01,'2026-08-20 05:30:24.745234','Smartphones and mobile phones from different brands.','Mobiles','2026-08-20 05:30:24.745234'),(2,0x01,'2026-08-20 05:31:29.630673','Laptops and notebooks for work, study, gaming and everyday use.','Laptops','2026-08-20 05:31:29.630673'),(3,0x01,'2026-08-20 05:31:39.166232','Headphones, wireless earbuds, speakers and other audio devices.','Audio','2026-08-20 05:31:39.166232'),(4,0x01,'2026-08-20 05:31:47.756484','Smart watches and wearable devices for fitness, health tracking and notifications.','Smart Watches','2026-08-20 05:31:47.756484'),(5,0x01,'2026-08-20 05:31:55.263989','Smart TVs, LED TVs, OLED TVs and 4K televisions for home entertainment.','Televisions','2026-08-20 05:31:55.263989'),(6,0x01,'2026-08-20 05:32:03.656371','Computer mice, keyboards, webcams, monitors and other computer peripherals.','Computer Accessories','2026-08-20 05:32:03.656371'),(7,0x01,'2026-08-20 05:32:13.657892','Tablets for entertainment, education, productivity and everyday use.','Tablets','2026-08-20 05:32:13.658890'),(8,0x01,'2026-08-20 05:32:20.803308','Gaming consoles, controllers, gaming accessories and other gaming devices.','Gaming','2026-08-20 05:32:20.803308'),(9,0x01,'2026-08-20 05:32:28.930235','Mobile chargers, cables, power banks, cases and other electronic accessories.','Accessories','2026-08-20 05:32:28.930235');
+INSERT INTO `categories` VALUES (1,_binary '','2026-08-20 05:30:24.745234','Smartphones and mobile phones from different brands.','Mobiles','2026-08-20 05:30:24.745234'),(2,_binary '','2026-08-20 05:31:29.630673','Laptops and notebooks for work, study, gaming and everyday use.','Laptops','2026-08-20 05:31:29.630673'),(3,_binary '','2026-08-20 05:31:39.166232','Headphones, wireless earbuds, speakers and other audio devices.','Audio','2026-08-20 05:31:39.166232'),(4,_binary '','2026-08-20 05:31:47.756484','Smart watches and wearable devices for fitness, health tracking and notifications.','Smart Watches','2026-08-20 05:31:47.756484'),(5,_binary '','2026-08-20 05:31:55.263989','Smart TVs, LED TVs, OLED TVs and 4K televisions for home entertainment.','Televisions','2026-08-20 05:31:55.263989'),(6,_binary '','2026-08-20 05:32:03.656371','Computer mice, keyboards, webcams, monitors and other computer peripherals.','Computer Accessories','2026-08-20 05:32:03.656371'),(7,_binary '','2026-08-20 05:32:13.657892','Tablets for entertainment, education, productivity and everyday use.','Tablets','2026-08-20 05:32:13.658890'),(8,_binary '','2026-08-20 05:32:20.803308','Gaming consoles, controllers, gaming accessories and other gaming devices.','Gaming','2026-08-20 05:32:20.803308'),(9,_binary '','2026-08-20 05:32:28.930235','Mobile chargers, cables, power banks, cases and other electronic accessories.','Accessories','2026-08-20 05:32:28.930235');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,6 +305,47 @@ LOCK TABLES `payments` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product_media`
+--
+
+DROP TABLE IF EXISTS `product_media`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_media` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `active` bit(1) NOT NULL,
+  `alt_text` varchar(500) DEFAULT NULL,
+  `content_type` varchar(100) NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `display_order` int NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_size` bigint NOT NULL,
+  `is_primary` bit(1) NOT NULL,
+  `media_type` enum('DOCUMENT','IMAGE','VIDEO') NOT NULL,
+  `media_url` varchar(1000) DEFAULT NULL,
+  `storage_key` varchar(500) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `product_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKrddbmk8eee6urapki8lvebqm4` (`storage_key`),
+  KEY `idx_product_media_type` (`media_type`),
+  KEY `idx_product_media_product_active_order` (`product_id`,`active`,`display_order`),
+  KEY `idx_product_media_product_primary_active` (`product_id`,`is_primary`,`active`),
+  CONSTRAINT `fk_product_media_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_media`
+--
+
+LOCK TABLES `product_media` WRITE;
+/*!40000 ALTER TABLE `product_media` DISABLE KEYS */;
+INSERT INTO `product_media` VALUES (1,_binary '','Samsung Galaxy S25 front view','image/jpeg','2026-09-15 12:55:35.030516',1,'THUMB_Galaxy-S25-Media-Asset-Thumb-1440x960.jpg',18951,_binary '','IMAGE','https://hifebhecvgiqxqlvhdar.supabase.co/storage/v1/object/public/parammart-media/products/1/images/e08bf8ad-cd3d-4f3e-a08f-e2929aeabdde.jpg','products/1/images/e08bf8ad-cd3d-4f3e-a08f-e2929aeabdde.jpg','2026-09-15 12:55:35.030516',1),(2,_binary '','Samsung Galaxy S25 info','image/jpeg','2026-09-15 12:57:22.141518',2,'info1.jpg',63798,_binary '\0','IMAGE','https://hifebhecvgiqxqlvhdar.supabase.co/storage/v1/object/public/parammart-media/products/1/images/bf0f6c5a-a685-42c5-bb11-8f5542c6613a.jpg','products/1/images/bf0f6c5a-a685-42c5-bb11-8f5542c6613a.jpg','2026-09-15 12:57:22.141518',1),(3,_binary '','Samsung Galaxy S25 info 2','image/jpeg','2026-09-15 12:57:59.846995',3,'info 2.jpg',48646,_binary '\0','IMAGE','https://hifebhecvgiqxqlvhdar.supabase.co/storage/v1/object/public/parammart-media/products/1/images/5db69800-2a56-4d5c-9d16-4fd14e1bfe40.jpg','products/1/images/5db69800-2a56-4d5c-9d16-4fd14e1bfe40.jpg','2026-09-15 12:57:59.846995',1),(4,_binary '','Samsung Galaxy S25 info 3','image/jpeg','2026-09-15 12:58:34.704272',4,'info 3.jpg',50364,_binary '\0','IMAGE','https://hifebhecvgiqxqlvhdar.supabase.co/storage/v1/object/public/parammart-media/products/1/images/36c500c0-0090-4ef7-8ca3-ad4499fda3e9.jpg','products/1/images/36c500c0-0090-4ef7-8ca3-ad4499fda3e9.jpg','2026-09-15 12:58:34.704272',1),(5,_binary '','Samsung Galaxy S25 info 4','image/jpeg','2026-09-15 12:59:34.594559',5,'info 4.jpg',75361,_binary '\0','IMAGE','https://hifebhecvgiqxqlvhdar.supabase.co/storage/v1/object/public/parammart-media/products/1/images/5927c395-12fa-443b-a284-5d85de5a6fe6.jpg','products/1/images/5927c395-12fa-443b-a284-5d85de5a6fe6.jpg','2026-09-15 12:59:34.594559',1);
+/*!40000 ALTER TABLE `product_media` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -338,7 +379,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,0x01,'2026-08-20 05:43:43.254095','Samsung Galaxy S25 with 6.2-inch AMOLED display, 12GB RAM, 256GB storage and advanced camera system.','Samsung Galaxy S25',74999.00,'SAM-S25-256-BLK',25,'2026-08-20 05:43:43.254095',2,1),(2,0x01,'2026-08-20 05:45:09.678337','Apple iPhone 16 with a powerful processor, advanced dual-camera system, 6.1-inch display and 128GB storage.','Apple iPhone 16',69999.00,'APL-IP16-128-BLK',20,'2026-08-20 05:45:09.678337',3,1),(3,0x01,'2026-08-20 05:45:26.937942','OnePlus 13 with a high-performance processor, 12GB RAM, 256GB storage, premium display and fast charging.','OnePlus 13',64999.00,'OP-13-256-BLU',30,'2026-08-20 05:45:26.937942',4,1),(4,0x01,'2026-08-20 05:45:37.595314','Dell Inspiron 15 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and Full HD display.','Dell Inspiron 15',64999.00,'DEL-INS15-I5-512',15,'2026-08-20 05:45:37.595314',5,2),(5,0x01,'2026-08-20 05:45:46.437018','HP Pavilion 14 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and compact Full HD display.','HP Pavilion 14',61999.00,'HP-PAV14-I5-512',18,'2026-08-20 05:45:46.437018',6,2),(6,0x01,'2026-08-20 05:45:53.493058','Premium wireless headphones with active noise cancellation, high-quality audio and long battery life.','Sony WH-1000XM5 Wireless Headphones',29999.00,'SON-WH1000XM5-BLK',20,'2026-08-20 05:45:53.493058',7,3),(7,0x01,'2026-08-20 06:00:34.490936','Premium wireless earbuds with active noise cancellation, high-resolution audio and a compact charging case.','Sony WF-1000XM5 Wireless Earbuds',24999.00,'SON-WF1000XM5-BLK',25,'2026-08-20 06:00:34.490936',7,3),(8,0x01,'2026-08-20 06:00:48.447235','Advanced wireless productivity mouse with precision tracking, ergonomic design and customizable buttons.','Logitech MX Master 3S',8495.00,'LOG-MX3S-GRAPH',45,'2026-08-20 06:00:48.447235',8,6),(9,0x01,'2026-08-20 06:00:55.592415','Compact wireless keyboard with Bluetooth connectivity, comfortable typing and support for multiple devices.','Logitech K380 Wireless Keyboard',3295.00,'LOG-K380-WHT',50,'2026-08-20 06:00:55.592415',8,6),(10,0x01,'2026-08-20 06:01:02.978894','Lenovo Legion gaming laptop with high-performance processor, dedicated graphics, 16GB RAM and 1TB SSD.','Lenovo Legion Gaming Laptop',109999.00,'LEN-LEGION-I7-1TB',8,'2026-08-20 06:01:02.978894',9,8),(11,0x01,'2026-08-20 06:01:09.972076','Lenovo Legion gaming mouse with precision tracking, ergonomic design and responsive gaming controls.','Lenovo Legion Gaming Mouse',3999.00,'LEN-LEGION-MOUSE-BLK',30,'2026-08-20 06:01:09.972076',9,8);
+INSERT INTO `products` VALUES (1,_binary '','2026-08-20 05:43:43.254095','Samsung Galaxy S25 with 6.2-inch AMOLED display, 12GB RAM, 256GB storage and advanced camera system.','Samsung Galaxy S25',74999.00,'SAM-S25-256-BLK',25,'2026-08-20 05:43:43.254095',2,1),(2,_binary '','2026-08-20 05:45:09.678337','Apple iPhone 16 with a powerful processor, advanced dual-camera system, 6.1-inch display and 128GB storage.','Apple iPhone 16',69999.00,'APL-IP16-128-BLK',20,'2026-08-20 05:45:09.678337',3,1),(3,_binary '','2026-08-20 05:45:26.937942','OnePlus 13 with a high-performance processor, 12GB RAM, 256GB storage, premium display and fast charging.','OnePlus 13',64999.00,'OP-13-256-BLU',30,'2026-08-20 05:45:26.937942',4,1),(4,_binary '','2026-08-20 05:45:37.595314','Dell Inspiron 15 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and Full HD display.','Dell Inspiron 15',64999.00,'DEL-INS15-I5-512',15,'2026-08-20 05:45:37.595314',5,2),(5,_binary '','2026-08-20 05:45:46.437018','HP Pavilion 14 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and compact Full HD display.','HP Pavilion 14',61999.00,'HP-PAV14-I5-512',18,'2026-08-20 05:45:46.437018',6,2),(6,_binary '','2026-08-20 05:45:53.493058','Premium wireless headphones with active noise cancellation, high-quality audio and long battery life.','Sony WH-1000XM5 Wireless Headphones',29999.00,'SON-WH1000XM5-BLK',20,'2026-08-20 05:45:53.493058',7,3),(7,_binary '','2026-08-20 06:00:34.490936','Premium wireless earbuds with active noise cancellation, high-resolution audio and a compact charging case.','Sony WF-1000XM5 Wireless Earbuds',24999.00,'SON-WF1000XM5-BLK',25,'2026-08-20 06:00:34.490936',7,3),(8,_binary '','2026-08-20 06:00:48.447235','Advanced wireless productivity mouse with precision tracking, ergonomic design and customizable buttons.','Logitech MX Master 3S',8495.00,'LOG-MX3S-GRAPH',45,'2026-08-20 06:00:48.447235',8,6),(9,_binary '','2026-08-20 06:00:55.592415','Compact wireless keyboard with Bluetooth connectivity, comfortable typing and support for multiple devices.','Logitech K380 Wireless Keyboard',3295.00,'LOG-K380-WHT',50,'2026-08-20 06:00:55.592415',8,6),(10,_binary '','2026-08-20 06:01:02.978894','Lenovo Legion gaming laptop with high-performance processor, dedicated graphics, 16GB RAM and 1TB SSD.','Lenovo Legion Gaming Laptop',109999.00,'LEN-LEGION-I7-1TB',8,'2026-08-20 06:01:02.978894',9,8),(11,_binary '','2026-08-20 06:01:09.972076','Lenovo Legion gaming mouse with precision tracking, ergonomic design and responsive gaming controls.','Lenovo Legion Gaming Mouse',3999.00,'LEN-LEGION-MOUSE-BLK',30,'2026-08-20 06:01:09.972076',9,8);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,7 +407,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK63cf888pmqtt5tipcne79xsbm` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,13 +416,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0x00,0x00,'2026-08-20 05:24:29.934396',0x00,'param@gmail.com',0x01,'Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,0x00,0x00,'2026-08-20 12:10:48.274872',0x00,'rahul@abc.com',0x01,'Rahul','Kumar','9876543211','$2a$10$5OBNrHBLH/UIhDdMxVqOdemw5i7/3GaZrpAsL1kbohDrYzaQZriHO','CUSTOMER','2026-08-20 12:10:48.274872');
+INSERT INTO `users` VALUES (1,_binary '\0',_binary '\0','2026-08-20 05:24:29.934396',_binary '\0','param@gmail.com',_binary '','Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,_binary '\0',_binary '\0','2026-08-20 12:10:48.274872',_binary '\0','rahul@abc.com',_binary '','Rahul','Kumar','9876543211','$2a$10$5OBNrHBLH/UIhDdMxVqOdemw5i7/3GaZrpAsL1kbohDrYzaQZriHO','ADMIN','2026-08-20 12:10:48.274872'),(3,_binary '\0',_binary '\0','2026-09-09 04:33:10.340577',_binary '\0','Tony@gmail.com',_binary '','Tony','Stark','6779809551','$2a$10$4gkMD1TNzF2x3ngbNYy5UuWQ3ItiQOvmbWx1aThxdI.u1XjeUYxRK','CUSTOMER','2026-09-09 04:33:10.340577');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'parammart_db'
---
 
 --
 -- Dumping routines for database 'parammart_db'
@@ -396,4 +433,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-20 19:10:51
+-- Dump completed on 2026-09-15 18:52:31
