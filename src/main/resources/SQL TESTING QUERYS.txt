@@ -1,0 +1,1221 @@
+
+/* ============================================================
+   PARAMMART - MASTER DATABASE TESTING QUERIES
+   ============================================================
+
+   PURPOSE:
+   Use this file whenever testing:
+
+   1. Products
+   2. Inventory
+   3. Users
+   4. Addresses
+   5. Cart
+   6. Cart Items
+   7. Checkout
+   8. Orders
+   9. Order Items
+   10. Order Cancellation
+   11. Inventory Restoration
+
+   DATABASE:
+   parammart_db
+
+   IMPORTANT:
+   These queries are mainly for TESTING / VERIFICATION.
+   Do not randomly UPDATE or DELETE production data.
+
+   ============================================================ */
+
+
+USE parammart_db;
+
+
+/* ============================================================
+   SECTION 1 - CHECK DATABASE
+   ============================================================ */
+
+SELECT DATABASE();
+
+SHOW TABLES;
+
+
+/* ============================================================
+   SECTION 2 - CHECK USERS
+   ============================================================ */
+
+SELECT
+    id,
+    first_name,
+    last_name,
+    email,
+    mobile,
+    role
+FROM users
+ORDER BY id;
+
+
+/* ------------------------------------------------------------
+   Find CUSTOMER users only
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    first_name,
+    last_name,
+    email,
+    mobile,
+    role
+FROM users
+WHERE role = 'CUSTOMER'
+ORDER BY id;
+
+
+/* ============================================================
+   SECTION 3 - CHECK PRODUCTS
+   ============================================================ */
+
+SELECT
+    id,
+    name,
+    sku,
+    price,
+    stock,
+    active,
+    category_id,
+    brand_id
+FROM products
+ORDER BY id;
+
+
+/* ------------------------------------------------------------
+   Search one product
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    name,
+    sku,
+    price,
+    stock,
+    active
+FROM products
+WHERE id = 1;
+
+
+/* ------------------------------------------------------------
+   Check all active products
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    name,
+    sku,
+    price,
+    stock
+FROM products
+WHERE active = TRUE
+ORDER BY id;
+
+
+/* ============================================================
+   SECTION 4 - CHECK INVENTORY
+   ============================================================ */
+
+SELECT
+    id,
+    product_id,
+    available_stock
+FROM inventory
+ORDER BY product_id;
+
+
+/* ------------------------------------------------------------
+   Inventory + Product combined view
+   ------------------------------------------------------------ */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    p.sku,
+    p.stock AS product_stock,
+    i.id AS inventory_id,
+    i.available_stock AS inventory_stock
+FROM products p
+LEFT JOIN inventory i
+    ON i.product_id = p.id
+ORDER BY p.id;
+
+
+/* ------------------------------------------------------------
+   Check one product inventory
+   ------------------------------------------------------------ */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    p.stock AS product_stock,
+    i.available_stock AS inventory_stock
+FROM products p
+LEFT JOIN inventory i
+    ON i.product_id = p.id
+WHERE p.id = 1;
+
+
+/* ============================================================
+   SECTION 5 - CHECK ADDRESSES
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    full_name,
+    mobile,
+    address_line1,
+    address_line2,
+    city,
+    state,
+    country,
+    pincode,
+    default_address
+FROM addresses
+ORDER BY id;
+
+
+/* ------------------------------------------------------------
+   Check addresses for one user
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    user_id,
+    full_name,
+    mobile,
+    address_line1,
+    address_line2,
+    city,
+    state,
+    country,
+    pincode,
+    default_address
+FROM addresses
+WHERE user_id = 3
+ORDER BY id;
+
+
+/* ============================================================
+   SECTION 6 - CHECK CARTS
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    active,
+    total_amount,
+    total_items,
+    created_at,
+    updated_at
+FROM carts
+ORDER BY id;
+
+
+/* ------------------------------------------------------------
+   Check cart for one user
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    user_id,
+    active,
+    total_amount,
+    total_items,
+    created_at,
+    updated_at
+FROM carts
+WHERE user_id = 3;
+
+
+/* ============================================================
+   SECTION 7 - CHECK CART ITEMS
+   ============================================================ */
+
+SELECT
+    id,
+    cart_id,
+    product_id,
+    quantity,
+    price,
+    total_price
+FROM cart_items
+ORDER BY id;
+
+
+/* ------------------------------------------------------------
+   Cart items + Product names
+   ------------------------------------------------------------ */
+
+SELECT
+    ci.id AS cart_item_id,
+    ci.cart_id,
+    ci.product_id,
+    p.name AS product_name,
+    p.sku,
+    ci.quantity,
+    ci.price,
+    ci.total_price
+FROM cart_items ci
+JOIN products p
+    ON p.id = ci.product_id
+ORDER BY ci.cart_id, ci.id;
+
+
+/* ------------------------------------------------------------
+   Complete cart view for one user
+   ------------------------------------------------------------ */
+
+SELECT
+    c.id AS cart_id,
+    c.user_id,
+    c.total_items AS cart_total_items,
+    c.total_amount AS cart_total_amount,
+
+    ci.id AS cart_item_id,
+    ci.product_id,
+    p.name AS product_name,
+    ci.quantity,
+    ci.price,
+    ci.total_price
+
+FROM carts c
+
+LEFT JOIN cart_items ci
+    ON ci.cart_id = c.id
+
+LEFT JOIN products p
+    ON p.id = ci.product_id
+
+WHERE c.user_id = 3
+
+ORDER BY ci.id;
+
+
+/* ============================================================
+   SECTION 8 - CHECK ORDERS
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    address_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+ORDER BY id DESC;
+
+
+/* ------------------------------------------------------------
+   Check one order
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    user_id,
+    address_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE id = 1;
+
+
+/* ------------------------------------------------------------
+   Check all orders for one user
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    user_id,
+    address_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE user_id = 3
+ORDER BY id DESC;
+
+
+/* ============================================================
+   SECTION 9 - CHECK ORDER ITEMS
+   ============================================================ */
+
+SELECT
+    id,
+    order_id,
+    product_id,
+    quantity,
+    price,
+    total_price
+FROM order_items
+ORDER BY order_id DESC, id;
+
+
+/* ------------------------------------------------------------
+   Order items + Product names
+   ------------------------------------------------------------ */
+
+SELECT
+    oi.id AS order_item_id,
+    oi.order_id,
+    oi.product_id,
+    p.name AS product_name,
+    p.sku,
+    oi.quantity,
+    oi.price,
+    oi.total_price
+FROM order_items oi
+JOIN products p
+    ON p.id = oi.product_id
+ORDER BY oi.order_id DESC, oi.id;
+
+
+/* ------------------------------------------------------------
+   Complete order view
+   ------------------------------------------------------------ */
+
+SELECT
+    o.id AS order_id,
+    o.user_id,
+    o.address_id,
+    o.status,
+    o.total_items,
+    o.total_amount,
+    o.ordered_at,
+
+    oi.id AS order_item_id,
+    oi.product_id,
+    p.name AS product_name,
+    oi.quantity,
+    oi.price,
+    oi.total_price
+
+FROM orders o
+
+LEFT JOIN order_items oi
+    ON oi.order_id = o.id
+
+LEFT JOIN products p
+    ON p.id = oi.product_id
+
+ORDER BY o.id DESC, oi.id;
+
+
+/* ============================================================
+   SECTION 10 - ORDER + ADDRESS
+   ============================================================ */
+
+SELECT
+    o.id AS order_id,
+    o.status,
+    o.total_amount,
+    o.total_items,
+    o.ordered_at,
+
+    a.id AS address_id,
+    a.full_name,
+    a.mobile,
+    a.address_line1,
+    a.address_line2,
+    a.city,
+    a.state,
+    a.country,
+    a.pincode
+
+FROM orders o
+
+LEFT JOIN addresses a
+    ON a.id = o.address_id
+
+ORDER BY o.id DESC;
+
+
+/* ============================================================
+   SECTION 11 - COMPLETE ORDER REPORT
+   ============================================================
+
+   This is the most useful query when debugging an order.
+
+   It shows:
+
+   ORDER
+   USER
+   ADDRESS
+   PRODUCT
+   QUANTITY
+   PRICE
+   TOTAL
+   STATUS
+
+   ============================================================ */
+
+SELECT
+    o.id AS order_id,
+
+    u.id AS user_id,
+    u.email AS user_email,
+
+    o.status,
+    o.total_amount AS order_total,
+    o.total_items,
+    o.ordered_at,
+
+    a.full_name AS delivery_name,
+    a.mobile AS delivery_mobile,
+    a.address_line1,
+    a.city,
+    a.state,
+    a.pincode,
+
+    oi.product_id,
+    p.name AS product_name,
+    p.sku,
+
+    oi.quantity,
+    oi.price,
+    oi.total_price
+
+FROM orders o
+
+LEFT JOIN users u
+    ON u.id = o.user_id
+
+LEFT JOIN addresses a
+    ON a.id = o.address_id
+
+LEFT JOIN order_items oi
+    ON oi.order_id = o.id
+
+LEFT JOIN products p
+    ON p.id = oi.product_id
+
+ORDER BY o.id DESC, oi.id;
+
+
+/* ============================================================
+   SECTION 12 - CART TESTING FLOW
+   ============================================================
+
+   USE THIS BEFORE CHECKOUT.
+
+   Step 1:
+   Check cart.
+
+   Step 2:
+   Add products from React.
+
+   Step 3:
+   Run these queries again.
+
+   ============================================================ */
+
+
+/* Check user's cart */
+
+SELECT
+    c.id AS cart_id,
+    c.user_id,
+    c.total_items,
+    c.total_amount,
+    c.active
+FROM carts c
+WHERE c.user_id = 3;
+
+
+/* Check cart products */
+
+SELECT
+    ci.cart_id,
+    ci.product_id,
+    p.name AS product_name,
+    ci.quantity,
+    ci.price,
+    ci.total_price
+FROM cart_items ci
+JOIN carts c
+    ON c.id = ci.cart_id
+JOIN products p
+    ON p.id = ci.product_id
+WHERE c.user_id = 3
+ORDER BY ci.id;
+
+
+/* ============================================================
+   SECTION 13 - BEFORE CHECKOUT INVENTORY CHECK
+   ============================================================
+
+   RUN THIS BEFORE CLICKING "PLACE ORDER".
+
+   Save/remember these numbers.
+
+   Example:
+
+   Product 1 = 25
+   Product 2 = 20
+   Product 3 = 30
+
+   ============================================================ */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    i.available_stock
+FROM inventory i
+JOIN products p
+    ON p.id = i.product_id
+WHERE p.id IN (1, 2, 3)
+ORDER BY p.id;
+
+
+/* ============================================================
+   SECTION 14 - AFTER CHECKOUT INVENTORY CHECK
+   ============================================================
+
+   If you purchased:
+
+   Product 1 quantity = 1
+   Product 2 quantity = 1
+   Product 3 quantity = 1
+
+   Then inventory should decrease by 1.
+
+   Example:
+
+   Before:
+   25, 20, 30
+
+   After:
+   24, 19, 29
+
+   ============================================================ */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    i.available_stock
+FROM inventory i
+JOIN products p
+    ON p.id = i.product_id
+WHERE p.id IN (1, 2, 3)
+ORDER BY p.id;
+
+
+/* ============================================================
+   SECTION 15 - AFTER ORDER PLACEMENT
+   ============================================================
+
+   Check latest order.
+
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    address_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+ORDER BY id DESC
+LIMIT 1;
+
+
+/* ------------------------------------------------------------
+   Check latest order items
+   ------------------------------------------------------------ */
+
+SELECT
+    oi.id,
+    oi.order_id,
+    oi.product_id,
+    p.name AS product_name,
+    oi.quantity,
+    oi.price,
+    oi.total_price
+FROM order_items oi
+JOIN products p
+    ON p.id = oi.product_id
+WHERE oi.order_id = (
+    SELECT MAX(id)
+    FROM orders
+)
+ORDER BY oi.id;
+
+
+/* ============================================================
+   SECTION 16 - AFTER ORDER PLACEMENT CART CHECK
+   ============================================================
+
+   After successful checkout:
+
+   Cart should have:
+
+   total_amount = 0
+   total_items  = 0
+
+   cart_items should normally be empty.
+
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    active
+FROM carts
+WHERE user_id = 3;
+
+
+/* ------------------------------------------------------------
+   Check remaining cart items
+   ------------------------------------------------------------ */
+
+SELECT
+    ci.id,
+    ci.cart_id,
+    ci.product_id,
+    ci.quantity,
+    ci.price,
+    ci.total_price
+FROM cart_items ci
+JOIN carts c
+    ON c.id = ci.cart_id
+WHERE c.user_id = 3;
+
+
+/* ============================================================
+   SECTION 17 - CANCEL ORDER TEST
+   ============================================================
+
+   IMPORTANT:
+
+   Before cancelling, check inventory.
+
+   Example:
+
+   Product 1 = 24
+   Product 2 = 19
+   Product 3 = 29
+
+   ============================================================ */
+
+
+/* Inventory BEFORE cancellation */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    i.available_stock
+FROM inventory i
+JOIN products p
+    ON p.id = i.product_id
+WHERE p.id IN (1, 2, 3)
+ORDER BY p.id;
+
+
+/* ------------------------------------------------------------
+   Check order status BEFORE cancellation
+   ------------------------------------------------------------ */
+
+SELECT
+    id,
+    status,
+    total_amount,
+    total_items
+FROM orders
+WHERE id = 1;
+
+
+/* ============================================================
+   AFTER CANCELLATION
+   ============================================================
+
+   Expected:
+
+   orders.status = CANCELLED
+
+   Inventory should be restored.
+
+   Example:
+
+   BEFORE CANCEL:
+   Product 1 = 24
+   Product 2 = 19
+   Product 3 = 29
+
+   AFTER CANCEL:
+   Product 1 = 25
+   Product 2 = 20
+   Product 3 = 30
+
+   ============================================================ */
+
+
+/* Check cancelled order */
+
+SELECT
+    id,
+    status,
+    total_amount,
+    total_items,
+    ordered_at
+FROM orders
+WHERE id = 1;
+
+
+/* Check restored inventory */
+
+SELECT
+    p.id AS product_id,
+    p.name AS product_name,
+    i.available_stock
+FROM inventory i
+JOIN products p
+    ON p.id = i.product_id
+WHERE p.id IN (1, 2, 3)
+ORDER BY p.id;
+
+
+/* ============================================================
+   SECTION 18 - CHECK CANCELLED ORDER ITEMS
+   ============================================================
+
+   Order items SHOULD remain.
+
+   We do NOT delete order_items when cancelling.
+
+   ============================================================ */
+
+SELECT
+    oi.id,
+    oi.order_id,
+    oi.product_id,
+    p.name AS product_name,
+    oi.quantity,
+    oi.price,
+    oi.total_price
+FROM order_items oi
+JOIN products p
+    ON p.id = oi.product_id
+WHERE oi.order_id = 1
+ORDER BY oi.id;
+
+
+/* ============================================================
+   SECTION 19 - ONE-SCREEN DEBUG QUERY
+   ============================================================
+
+   USE THIS MOST OF THE TIME.
+
+   Change:
+
+       WHERE o.id = 1
+
+   to whatever order ID you want.
+
+   ============================================================ */
+
+SELECT
+    o.id AS order_id,
+    o.status AS order_status,
+    o.total_amount,
+    o.total_items,
+
+    u.id AS user_id,
+    u.email AS user_email,
+
+    a.full_name AS delivery_name,
+    a.city,
+    a.state,
+    a.pincode,
+
+    oi.product_id,
+    p.name AS product_name,
+    p.sku,
+    oi.quantity,
+    oi.price,
+    oi.total_price,
+
+    i.available_stock AS current_inventory
+
+FROM orders o
+
+JOIN users u
+    ON u.id = o.user_id
+
+LEFT JOIN addresses a
+    ON a.id = o.address_id
+
+LEFT JOIN order_items oi
+    ON oi.order_id = o.id
+
+LEFT JOIN products p
+    ON p.id = oi.product_id
+
+LEFT JOIN inventory i
+    ON i.product_id = oi.product_id
+
+WHERE o.id = 1
+
+ORDER BY oi.id;
+
+
+/* ============================================================
+   SECTION 20 - FIND ALL ORDERS BY STATUS
+   ============================================================ */
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'PENDING'
+ORDER BY ordered_at DESC;
+
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'CONFIRMED'
+ORDER BY ordered_at DESC;
+
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'PROCESSING'
+ORDER BY ordered_at DESC;
+
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'SHIPPED'
+ORDER BY ordered_at DESC;
+
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'DELIVERED'
+ORDER BY ordered_at DESC;
+
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM orders
+WHERE status = 'CANCELLED'
+ORDER BY ordered_at DESC;
+
+
+/* ============================================================
+   SECTION 21 - CHECK FOR PRODUCTS WITHOUT INVENTORY
+   ============================================================
+
+   VERY IMPORTANT.
+
+   Every active product that can be purchased should have
+   an inventory record.
+
+   ============================================================ */
+
+SELECT
+    p.id,
+    p.name,
+    p.sku,
+    p.stock
+FROM products p
+LEFT JOIN inventory i
+    ON i.product_id = p.id
+WHERE p.active = TRUE
+  AND i.id IS NULL;
+
+
+/* ============================================================
+   SECTION 22 - CHECK FOR DUPLICATE INVENTORY
+   ============================================================ */
+
+SELECT
+    product_id,
+    COUNT(*) AS inventory_count
+FROM inventory
+GROUP BY product_id
+HAVING COUNT(*) > 1;
+
+
+/* ============================================================
+   SECTION 23 - CHECK CART TOTAL CALCULATION
+   ============================================================
+
+   This helps verify:
+
+       quantity × price = total_price
+
+   ============================================================ */
+
+SELECT
+    ci.id,
+    ci.cart_id,
+    ci.product_id,
+    p.name AS product_name,
+    ci.quantity,
+    ci.price,
+    ci.total_price,
+
+    (ci.quantity * ci.price) AS calculated_total
+
+FROM cart_items ci
+
+JOIN products p
+    ON p.id = ci.product_id;
+
+
+/* ============================================================
+   SECTION 24 - CHECK ORDER TOTAL CALCULATION
+   ============================================================ */
+
+SELECT
+    o.id AS order_id,
+    o.total_amount AS order_saved_total,
+
+    SUM(oi.total_price) AS calculated_total,
+
+    o.total_items AS order_saved_items,
+
+    SUM(oi.quantity) AS calculated_items
+
+FROM orders o
+
+JOIN order_items oi
+    ON oi.order_id = o.id
+
+GROUP BY
+    o.id,
+    o.total_amount,
+    o.total_items;
+
+
+/* ============================================================
+   SECTION 25 - CHECK FOR DATA INCONSISTENCY
+   ============================================================
+
+   Product stock and inventory stock are separate values in
+   the current database design.
+
+   This query helps you see both.
+
+   ============================================================ */
+
+SELECT
+    p.id AS product_id,
+    p.name,
+    p.stock AS product_stock,
+    i.available_stock AS inventory_stock
+FROM products p
+LEFT JOIN inventory i
+    ON i.product_id = p.id
+ORDER BY p.id;
+
+
+/* ============================================================
+   QUICK TESTING FLOW
+   ============================================================
+
+   Use this sequence whenever testing the application:
+
+   ------------------------------------------------------------
+
+   STEP 1 - Start with products
+   Run:
+       SECTION 3
+       SECTION 4
+
+   ------------------------------------------------------------
+
+   STEP 2 - Login as CUSTOMER
+   Make sure the user role is:
+
+       CUSTOMER
+
+   ------------------------------------------------------------
+
+   STEP 3 - Add product to cart from React
+
+   Run:
+       SECTION 6
+       SECTION 7
+       SECTION 12
+
+   Expected:
+       cart total_items increases
+       cart total_amount increases
+       cart_items contains the product
+
+   ------------------------------------------------------------
+
+   STEP 4 - Open Checkout
+
+   Verify:
+       address is loaded
+       correct address selected
+       cart products are visible
+
+   ------------------------------------------------------------
+
+   STEP 5 - BEFORE PLACE ORDER
+
+   Run:
+       SECTION 13
+
+   Save inventory numbers.
+
+   Example:
+
+       Product 1 = 25
+       Product 2 = 20
+       Product 3 = 30
+
+   ------------------------------------------------------------
+
+   STEP 6 - Click PLACE ORDER
+
+   Run:
+       SECTION 15
+       SECTION 16
+       SECTION 14
+
+   Expected:
+
+       Order created
+       Order status = PENDING
+
+       Cart:
+           total_amount = 0
+           total_items = 0
+
+       Inventory:
+           stock decreased according to quantity purchased
+
+   ------------------------------------------------------------
+
+   STEP 7 - Open My Orders
+
+   Verify:
+       order appears
+       total is correct
+       products are correct
+       address is correct
+
+   ------------------------------------------------------------
+
+   STEP 8 - Open Order Details
+
+   Verify:
+       order status
+       timeline
+       products
+       delivery address
+       summary
+
+   ------------------------------------------------------------
+
+   STEP 9 - CANCEL ORDER
+
+   Run inventory query BEFORE cancellation.
+
+   Cancel from React.
+
+   Run:
+
+       SECTION 17
+       SECTION 18
+
+   Expected:
+
+       orders.status = CANCELLED
+
+       inventory restored
+
+       order_items remain
+
+   ------------------------------------------------------------
+
+   STEP 10 - FINAL CHECK
+
+   Run:
+
+       SECTION 19
+
+   This gives a complete picture of the order.
+
+   ============================================================ */
+
+
+/* ============================================================
+   IMPORTANT TEST DATA - CURRENT PARAMMART PRODUCTS
+   ============================================================
+
+   Product 1:
+       Samsung Galaxy S25
+       SKU: SAM-S25-256-BLK
+       Price: 74999
+
+   Product 2:
+       Apple iPhone 16
+       SKU: APL-IP16-128-BLK
+       Price: 69999
+
+   Product 3:
+       OnePlus 13
+       SKU: OP-13-256-BLU
+       Price: 64999
+
+   ============================================================ */
+
+
+/* ============================================================
+   END OF PARAMMART MASTER TESTING QUERIES
+   ============================================================ */
+

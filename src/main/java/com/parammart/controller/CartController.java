@@ -3,11 +3,18 @@ package com.parammart.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.parammart.dto.request.CartRequest;
 import com.parammart.dto.response.ApiResponse;
-import com.parammart.entity.Cart;
+import com.parammart.dto.response.CartResponse;
 import com.parammart.service.CartService;
 
 import jakarta.validation.Valid;
@@ -22,66 +29,61 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    // ============================
-    // Add Product To Cart
-    // ============================
-
     @PostMapping("/add")
     @PreAuthorize("hasRole('CUSTOMER')")
-    public ResponseEntity<ApiResponse<Cart>> addToCart(
+    public ResponseEntity<ApiResponse<CartResponse>> addToCart(
             @Valid @RequestBody CartRequest request) {
 
-        Cart cart = cartService.addToCart(request);
+        CartResponse cart =
+                cartService.addToCart(request);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new ApiResponse<>(
-                        true,
-                        "Product added successfully.",
-                        cart
-                ));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        new ApiResponse<>(
+                                true,
+                                "Product added successfully.",
+                                cart
+                        )
+                );
     }
-
-    // ============================
-    // Get Logged User Cart
-    // ============================
 
     @GetMapping
     @PreAuthorize("hasRole('CUSTOMER')")
-    public ResponseEntity<ApiResponse<Cart>> getCart() {
+    public ResponseEntity<ApiResponse<CartResponse>> getCart() {
 
-        Cart cart = cartService.getMyCart();
+        CartResponse cart =
+                cartService.getMyCart();
 
         return ResponseEntity.ok(
                 new ApiResponse<>(
                         true,
                         "Cart fetched successfully.",
                         cart
-                ));
+                )
+        );
     }
-
-    // ============================
-    // Update Quantity
-    // ============================
 
     @PutMapping("/{productId}/{quantity}")
     @PreAuthorize("hasRole('CUSTOMER')")
-    public ResponseEntity<ApiResponse<Cart>> updateQuantity(
+    public ResponseEntity<ApiResponse<CartResponse>> updateQuantity(
             @PathVariable Long productId,
             @PathVariable Integer quantity) {
 
-        Cart cart = cartService.updateQuantity(productId, quantity);
+        CartResponse cart =
+                cartService.updateQuantity(
+                        productId,
+                        quantity
+                );
 
         return ResponseEntity.ok(
                 new ApiResponse<>(
                         true,
                         "Cart updated successfully.",
                         cart
-                ));
+                )
+        );
     }
-
-    // ============================
-    // Remove Item
-    // ============================
 
     @DeleteMapping("/{productId}")
     @PreAuthorize("hasRole('CUSTOMER')")
@@ -95,12 +97,9 @@ public class CartController {
                         true,
                         "Item removed successfully.",
                         null
-                ));
+                )
+        );
     }
-
-    // ============================
-    // Clear Cart
-    // ============================
 
     @DeleteMapping("/clear")
     @PreAuthorize("hasRole('CUSTOMER')")
@@ -113,7 +112,7 @@ public class CartController {
                         true,
                         "Cart cleared successfully.",
                         null
-                ));
+                )
+        );
     }
-
 }

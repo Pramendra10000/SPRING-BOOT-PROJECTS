@@ -2,16 +2,16 @@ package com.parammart.service;
 
 import java.util.List;
 
-import com.parammart.entity.Order;
+import com.parammart.dto.request.PlaceOrderRequest;
+import com.parammart.dto.response.OrderResponse;
 
 public interface OrderService {
 
-    Order placeOrder();
+    OrderResponse placeOrder(PlaceOrderRequest request);
 
-    List<Order> getMyOrders();
+    List<OrderResponse> getMyOrders();
 
-    Order getOrderById(Long id);
+    OrderResponse getOrderById(Long id);
 
-    Order cancelOrder(Long id);
-
+    OrderResponse cancelOrder(Long id);
 }

@@ -5,7 +5,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +39,11 @@ public class Cart {
     @JoinColumn(name = "user_id", unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "cart",
+    @OneToMany(
+            mappedBy = "cart",
             cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true
+    )
     private List<CartItem> cartItems = new ArrayList<>();
 
     @Column(nullable = false)
@@ -38,7 +52,7 @@ public class Cart {
     @Column(nullable = false)
     private Integer totalItems = 0;
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     private Boolean active = true;
 
     private LocalDateTime createdAt;
@@ -56,4 +70,21 @@ public class Cart {
         updatedAt = LocalDateTime.now();
     }
 
+    /**
+     * Adds a CartItem and maintains both sides
+     * of the Cart <-> CartItem relationship.
+     */
+    public void addItem(CartItem item) {
+        cartItems.add(item);
+        item.setCart(this);
+    }
+
+    /**
+     * Removes a CartItem and maintains both sides
+     * of the Cart <-> CartItem relationship.
+     */
+    public void removeItem(CartItem item) {
+        cartItems.remove(item);
+        item.setCart(null);
+    }
 }

@@ -1,18 +1,17 @@
 package com.parammart.service;
 
 import com.parammart.dto.request.CartRequest;
-import com.parammart.entity.Cart;
+import com.parammart.dto.response.CartResponse;
 
 public interface CartService {
 
-    Cart addToCart(CartRequest request);
+    CartResponse addToCart(CartRequest request);
 
-    Cart getMyCart();
+    CartResponse getMyCart();
 
-    Cart updateQuantity(Long productId,Integer quantity);
+    CartResponse updateQuantity(Long productId, Integer quantity);
 
     void removeItem(Long productId);
 
     void clearCart();
-
 }

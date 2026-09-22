@@ -246,3 +246,44 @@ Product Details
    ↓
 Gallery + video
 
+=========================================================================================================
+                                   CheckOUT
+=========================================================================================================
+
+                  CHECKOUT
+                     │
+                     │ Place Order
+                     ▼
+              POST /api/orders/place
+                     │
+                     ▼
+              Spring Boot creates
+                 Order + Items
+                     │
+                     ├── Inventory reduced
+                     ├── Cart cleared
+                     │
+                     ▼
+                OrderResponse
+                     │
+                     ▼
+              React receives order
+                     │
+                     ▼
+                loadCart()
+                     │
+                     ▼
+              Cart count → 0
+                     │
+                     ▼
+             /order-success
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+    View My Orders       Continue Shopping
+          │
+          ▼
+       /orders
+          │
+          ▼
+   GET /api/orders

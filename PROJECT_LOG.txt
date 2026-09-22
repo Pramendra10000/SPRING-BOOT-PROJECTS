@@ -129,7 +129,7 @@ After that all table created by jpa hibernate
           parammart_db > "%USERPROFILE%\Documents\database_dump_15-09-2026.sql"
          Enter password: ****         
          
-         mysqldump -u root -p --routines --triggers --databases parammart_db > database_dump_16-09-2026.sql
+         mysqldump -u root -p --routines --triggers --databases parammart_db > database_dump_22-09-2026.sql
          Enter password: ****
          
          mysqldump -u root -p --databases parammart_db --routines --events --triggers --single-transaction --hex-blob --default-character-set=utf8mb4 > parammart_db_backup.sql
@@ -152,3 +152,88 @@ After that all table created by jpa hibernate
                
                 app.storage.supabase.access-key=${f585761ff3052dabe7688bc29d020387}
 app.storage.supabase.secret-key=${c378dad4d2eca7b96bdd973a5f8d68d91a63f0c626a6553c2aad1371f538a389}
+
+
+
+ +++++++++++++++++++++++++++++  We need to add inventory manjually to 
+ provide wearehouse details like we have product in wearhouse +++++++++++++++++++++++++++++++++++++++++
+ 
+ 
+INSERT INTO parammart_db.inventory
+(
+    active,
+    available_stock,
+    reserved_stock,
+    minimum_stock,
+    maximum_stock,
+    warehouse_location,
+    product_id
+)
+VALUES
+(
+    1,
+    25,
+    0,
+    10,
+    1000,
+    'Main Warehouse',
+    1
+);
+
+SELECT
+    id,
+    active,
+    available_stock,
+    reserved_stock,
+    minimum_stock,
+    maximum_stock,
+    warehouse_location,
+    product_id
+FROM parammart_db.inventory;
+
+
+
+
+
+SOME SELECT QUERY TO CHECK.
+
+SELECT
+    id,
+    user_id,
+    address_id,
+    total_amount,
+    total_items,
+    status,
+    ordered_at
+FROM parammart_db.orders
+ORDER BY id DESC;
+
+SELECT
+    id,
+    order_id,
+    product_id,
+    quantity,
+    price,
+    total_price
+FROM parammart_db.order_items
+ORDER BY id DESC;
+
+SELECT
+    product_id,
+    available_stock
+FROM parammart_db.inventory
+WHERE product_id IN (1, 2, 3)
+ORDER BY product_id;
+
+SELECT
+    id,
+    user_id,
+    total_amount,
+    total_items,
+    active
+FROM parammart_db.carts
+WHERE user_id = 3;
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
