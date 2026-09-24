@@ -46,7 +46,7 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK1fa36y2oqhao3wgg2rw1pi459` (`user_id`),
   CONSTRAINT `FK1fa36y2oqhao3wgg2rw1pi459` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,6 +55,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` VALUES (1,'145, shiv prerna mitra mandal','','thane','India','2026-09-22 11:52:11.294290',_binary '\0','Tony Stark','6779809551','400604','Maharastra',3),(2,'703, b wing badlapur','','thane','India','2026-09-22 12:47:20.492420',_binary '','Tony Stark','6779809551','421503','Maharastra',3);
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +110,7 @@ CREATE TABLE `cart_items` (
   KEY `FK1re40cjegsfvw58xrkdp6bac6` (`product_id`),
   CONSTRAINT `FK1re40cjegsfvw58xrkdp6bac6` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `FKpcttvuq4mxppo8sxggjtn5i2c` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE `carts` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK64t7ox312pqal3p7fg9o503c2` (`user_id`),
   CONSTRAINT `FKb5o626f86h46m4s7ms6ginnop` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +149,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (1,_binary '','2026-09-22 09:41:36.565759',0.00,0,'2026-09-22 13:08:15.871760',3);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +203,7 @@ CREATE TABLE `inventory` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKce3rbi3bfstbvvyne34c1dvyv` (`product_id`),
   CONSTRAINT `FKq2yge7ebtfuvwufr6lwfwqy9l` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,6 +212,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (1,_binary '',25,NULL,1000,10,0,'2026-09-22 13:33:33.585157','Main Warehouse',1),(2,_binary '',20,NULL,1000,10,0,'2026-09-22 13:23:12.835962','Main Warehouse',2),(3,_binary '',30,NULL,1000,10,0,'2026-09-22 13:23:12.859813','Main Warehouse',3),(4,_binary '',15,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',4),(5,_binary '',18,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',5),(6,_binary '',20,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',6),(7,_binary '',25,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',7),(8,_binary '',45,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',8),(9,_binary '',50,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',9),(10,_binary '',8,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',10),(11,_binary '',30,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',11);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +235,7 @@ CREATE TABLE `order_items` (
   KEY `FKocimc7dtr037rh4ls4l95nlfi` (`product_id`),
   CONSTRAINT `FKbioxgbv59vetrxe0ejfubep1w` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   CONSTRAINT `FKocimc7dtr037rh4ls4l95nlfi` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,6 +244,7 @@ CREATE TABLE `order_items` (
 
 LOCK TABLES `order_items` WRITE;
 /*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
+INSERT INTO `order_items` VALUES (1,74999.00,1,74999.00,1,1),(2,69999.00,1,69999.00,1,2),(3,64999.00,1,64999.00,1,3),(4,74999.00,1,74999.00,2,1),(5,74999.00,1,74999.00,3,1);
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,10 +262,13 @@ CREATE TABLE `orders` (
   `total_amount` decimal(38,2) DEFAULT NULL,
   `total_items` int DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
+  `address_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK32ql8ubntj5uh44ph9659tiih` (`user_id`),
-  CONSTRAINT `FK32ql8ubntj5uh44ph9659tiih` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKhlglkvf5i60dv6dn397ethgpt` (`address_id`),
+  CONSTRAINT `FK32ql8ubntj5uh44ph9659tiih` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKhlglkvf5i60dv6dn397ethgpt` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,6 +277,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2026-09-22 12:21:54.334576','CANCELLED',209997.00,3,3,1),(2,'2026-09-22 12:47:40.273748','CANCELLED',74999.00,1,3,2),(3,'2026-09-22 13:08:15.845661','CANCELLED',74999.00,1,3,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +387,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,_binary '','2026-08-20 05:43:43.254095','Samsung Galaxy S25 with 6.2-inch AMOLED display, 12GB RAM, 256GB storage and advanced camera system.','Samsung Galaxy S25',74999.00,'SAM-S25-256-BLK',25,'2026-08-20 05:43:43.254095',2,1),(2,_binary '','2026-08-20 05:45:09.678337','Apple iPhone 16 with a powerful processor, advanced dual-camera system, 6.1-inch display and 128GB storage.','Apple iPhone 16',69999.00,'APL-IP16-128-BLK',20,'2026-08-20 05:45:09.678337',3,1),(3,_binary '','2026-08-20 05:45:26.937942','OnePlus 13 with a high-performance processor, 12GB RAM, 256GB storage, premium display and fast charging.','OnePlus 13',64999.00,'OP-13-256-BLU',30,'2026-08-20 05:45:26.937942',4,1),(4,_binary '','2026-08-20 05:45:37.595314','Dell Inspiron 15 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and Full HD display.','Dell Inspiron 15',64999.00,'DEL-INS15-I5-512',15,'2026-08-20 05:45:37.595314',5,2),(5,_binary '','2026-08-20 05:45:46.437018','HP Pavilion 14 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and compact Full HD display.','HP Pavilion 14',61999.00,'HP-PAV14-I5-512',18,'2026-08-20 05:45:46.437018',6,2),(6,_binary '','2026-08-20 05:45:53.493058','Premium wireless headphones with active noise cancellation, high-quality audio and long battery life.','Sony WH-1000XM5 Wireless Headphones',29999.00,'SON-WH1000XM5-BLK',20,'2026-08-20 05:45:53.493058',7,3),(7,_binary '','2026-08-20 06:00:34.490936','Premium wireless earbuds with active noise cancellation, high-resolution audio and a compact charging case.','Sony WF-1000XM5 Wireless Earbuds',24999.00,'SON-WF1000XM5-BLK',25,'2026-08-20 06:00:34.490936',7,3),(8,_binary '','2026-08-20 06:00:48.447235','Advanced wireless productivity mouse with precision tracking, ergonomic design and customizable buttons.','Logitech MX Master 3S',8495.00,'LOG-MX3S-GRAPH',45,'2026-08-20 06:00:48.447235',8,6),(9,_binary '','2026-08-20 06:00:55.592415','Compact wireless keyboard with Bluetooth connectivity, comfortable typing and support for multiple devices.','Logitech K380 Wireless Keyboard',3295.00,'LOG-K380-WHT',50,'2026-08-20 06:00:55.592415',8,6),(10,_binary '','2026-08-20 06:01:02.978894','Lenovo Legion gaming laptop with high-performance processor, dedicated graphics, 16GB RAM and 1TB SSD.','Lenovo Legion Gaming Laptop',109999.00,'LEN-LEGION-I7-1TB',8,'2026-08-20 06:01:02.978894',9,8),(11,_binary '','2026-08-20 06:01:09.972076','Lenovo Legion gaming mouse with precision tracking, ergonomic design and responsive gaming controls.','Lenovo Legion Gaming Mouse',3999.00,'LEN-LEGION-MOUSE-BLK',30,'2026-08-20 06:01:09.972076',9,8);
+INSERT INTO `products` VALUES (1,_binary '','2026-08-20 05:43:43.254095','Samsung Galaxy S25 with 6.2-inch AMOLED display, 12GB RAM, 256GB storage and advanced camera system.','Samsung Galaxy S25',74999.00,'SAM-S25-256-BLK',25,'2026-08-20 05:43:43.254095',2,1),(2,_binary '','2026-08-20 05:45:09.678337','Apple iPhone 16 with a powerful processor, advanced dual-camera system, 6.1-inch display and 128GB storage.','Apple iPhone 16',69999.00,'APL-IP16-128-BLKL',20,'2026-09-24 13:28:09.039505',3,1),(3,_binary '','2026-08-20 05:45:26.937942','OnePlus 13 with a high-performance processor, 12GB RAM, 256GB storage, premium display and fast charging.','OnePlus 13',64999.00,'OP-13-256-BLU',30,'2026-08-20 05:45:26.937942',4,1),(4,_binary '','2026-08-20 05:45:37.595314','Dell Inspiron 15 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and Full HD display.','Dell Inspiron 15',64999.00,'DEL-INS15-I5-512',15,'2026-08-20 05:45:37.595314',5,2),(5,_binary '','2026-08-20 05:45:46.437018','HP Pavilion 14 laptop with Intel Core i5 processor, 16GB RAM, 512GB SSD and compact Full HD display.','HP Pavilion 14',61999.00,'HP-PAV14-I5-512',18,'2026-08-20 05:45:46.437018',6,2),(6,_binary '','2026-08-20 05:45:53.493058','Premium wireless headphones with active noise cancellation, high-quality audio and long battery life.','Sony WH-1000XM5 Wireless Headphones',29999.00,'SON-WH1000XM5-BLK',20,'2026-08-20 05:45:53.493058',7,3),(7,_binary '','2026-08-20 06:00:34.490936','Premium wireless earbuds with active noise cancellation, high-resolution audio and a compact charging case.','Sony WF-1000XM5 Wireless Earbuds',24999.00,'SON-WF1000XM5-BLK',25,'2026-08-20 06:00:34.490936',7,3),(8,_binary '','2026-08-20 06:00:48.447235','Advanced wireless productivity mouse with precision tracking, ergonomic design and customizable buttons.','Logitech MX Master 3S',8495.00,'LOG-MX3S-GRAPH',45,'2026-08-20 06:00:48.447235',8,6),(9,_binary '','2026-08-20 06:00:55.592415','Compact wireless keyboard with Bluetooth connectivity, comfortable typing and support for multiple devices.','Logitech K380 Wireless Keyboard',3295.00,'LOG-K380-WHT',50,'2026-08-20 06:00:55.592415',8,6),(10,_binary '','2026-08-20 06:01:02.978894','Lenovo Legion gaming laptop with high-performance processor, dedicated graphics, 16GB RAM and 1TB SSD.','Lenovo Legion Gaming Laptop',109999.00,'LEN-LEGION-I7-1TB',8,'2026-08-20 06:01:02.978894',9,8),(11,_binary '','2026-08-20 06:01:09.972076','Lenovo Legion gaming mouse with precision tracking, ergonomic design and responsive gaming controls.','Lenovo Legion Gaming Mouse',3999.00,'LEN-LEGION-MOUSE-BLK',30,'2026-08-20 06:01:09.972076',9,8);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +415,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK63cf888pmqtt5tipcne79xsbm` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +424,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,_binary '\0',_binary '\0','2026-08-20 05:24:29.934396',_binary '\0','param@gmail.com',_binary '','Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,_binary '\0',_binary '\0','2026-08-20 12:10:48.274872',_binary '\0','rahul@abc.com',_binary '','Rahul','Kumar','9876543211','$2a$10$5OBNrHBLH/UIhDdMxVqOdemw5i7/3GaZrpAsL1kbohDrYzaQZriHO','ADMIN','2026-08-20 12:10:48.274872'),(3,_binary '\0',_binary '\0','2026-09-09 04:33:10.340577',_binary '\0','Tony@gmail.com',_binary '','Tony','Stark','6779809551','$2a$10$4gkMD1TNzF2x3ngbNYy5UuWQ3ItiQOvmbWx1aThxdI.u1XjeUYxRK','CUSTOMER','2026-09-09 04:33:10.340577');
+INSERT INTO `users` VALUES (1,_binary '\0',_binary '\0','2026-08-20 05:24:29.934396',_binary '\0','param@gmail.com',_binary '','Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,_binary '\0',_binary '\0','2026-08-20 12:10:48.274872',_binary '\0','rahul@abc.com',_binary '','Rahul','Kumar','9876543211','$2a$10$v7d/TO5nEqkm6JZd.M5VhOAB//AMXrh9BsX0rrcgZc.aK1ZWZIAca','EMPLOYEE','2026-08-20 12:10:48.274872'),(3,_binary '\0',_binary '\0','2026-09-09 04:33:10.340577',_binary '\0','Tony@gmail.com',_binary '','Tony','Stark','6779809551','$2a$10$v7d/TO5nEqkm6JZd.M5VhOAB//AMXrh9BsX0rrcgZc.aK1ZWZIAca','CUSTOMER','2026-09-09 04:33:10.340577'),(4,_binary '\0',_binary '\0','2026-09-24 10:19:54.236024',_binary '\0','Captain@gmail.com',_binary '','Captain','America','6989809551','$2a$10$k7BnBB1zlc4E/ucYP/WtI.PYSbpIej5SrapUGudGOcE/0ombAbJny','MANAGER','2026-09-24 10:19:54.236024');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -433,4 +441,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-15 18:52:31
+-- Dump completed on 2026-09-24 19:12:47

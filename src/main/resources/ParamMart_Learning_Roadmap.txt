@@ -287,3 +287,35 @@ Gallery + video
           │
           ▼
    GET /api/orders
+   
+   
+   
+   ===============================================================================================================
+   
+                       PRODUCT
+                       │
+                       │
+                       ▼
+                  INVENTORY
+                       │
+                availableStock
+                       │
+          ┌────────────┼────────────┐
+          │            │            │
+          ▼            ▼            ▼
+        CART        CHECKOUT    ADMIN STOCK
+          │            │            │
+          │            ▼            │
+          │       Stock decreases   │
+          │                         │
+          │                         ▼
+          │                    Stock In/Out
+          │
+          ▼
+      Order placed
+          │
+          ▼
+      Cancellation
+          │
+          ▼
+     Stock restored

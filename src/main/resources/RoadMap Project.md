@@ -222,3 +222,79 @@ brand
        
        
        
+       
+       =========================================================================================
+       
+       
+       Admin Dashboard
+│
+├── Products
+│   ├── View all products
+│   ├── Search products
+│   ├── Add product
+│   ├── Edit product
+│   ├── Activate / deactivate
+│   └── Delete product
+│
+├── Categories
+│   ├── View
+│   ├── Add
+│   ├── Edit
+│   └── Delete
+│
+├── Brands
+│   ├── View
+│   ├── Add
+│   ├── Edit
+│   └── Delete
+│
+├── Inventory
+│   ├── Stock
+│   ├── Stock In
+│   ├── Stock Out
+│   └── Low Stock
+│
+└── Orders
+    ├── View orders
+    ├── View details
+    └── Update status
+       
+       ===========================================================================
+       
+                           ┌──────────────────┐
+                    │     LoginCard    │
+                    └────────┬─────────┘
+                             │
+                             ▼
+                    POST /api/auth/login
+                             │
+                             ▼
+                           JWT
+                             │
+                             ▼
+                     localStorage
+                             │
+                             ▼
+                      AuthContext
+                             │
+                             ▼
+                    GET /api/user/me
+                             │
+                             ▼
+                  ┌─────────────────────┐
+                  │ CurrentUserResponse │
+                  │                     │
+                  │ role                │
+                  │ permissions        │
+                  │ name                │
+                  │ email               │
+                  └──────────┬──────────┘
+                             │
+                             ▼
+                     ProtectedRoute
+                             │
+                             ▼
+                         MainLayout
+                             │
+                             ▼
+                         Dashboard

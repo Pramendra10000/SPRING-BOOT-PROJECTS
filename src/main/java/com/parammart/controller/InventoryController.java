@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.parammart.dto.request.InventoryRequest;
 import com.parammart.dto.response.ApiResponse;
-import com.parammart.entity.Inventory;
+import com.parammart.dto.response.InventoryResponse;
 import com.parammart.service.InventoryService;
 
 import jakarta.validation.Valid;
@@ -22,187 +22,240 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    public InventoryController(InventoryService inventoryService) {
+    public InventoryController(
+            InventoryService inventoryService) {
+
         this.inventoryService = inventoryService;
     }
 
-    // ===========================
-    // Create Inventory
-    // ===========================
+    // =========================================================
+    // CREATE INVENTORY
+    // ADMIN + MANAGER
+    // =========================================================
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    public ResponseEntity<ApiResponse<Inventory>> createInventory(
-            @Valid @RequestBody InventoryRequest request) {
+    public ResponseEntity<ApiResponse<InventoryResponse>>
+            createInventory(
+                    @Valid @RequestBody
+                    InventoryRequest request) {
 
-        Inventory inventory = inventoryService.createInventory(request);
+        InventoryResponse inventory =
+                inventoryService.createInventory(request);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Inventory created successfully",
                         inventory);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.CREATED);
     }
 
-    // ===========================
-    // Get All Inventory
-    // ===========================
+    // =========================================================
+    // GET ALL INVENTORY
+    // ADMIN + MANAGER + EMPLOYEE + CUSTOMER
+    // =========================================================
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
-    public ResponseEntity<ApiResponse<List<Inventory>>> getAllInventory() {
+    @PreAuthorize(
+        "hasAnyRole('ADMIN','MANAGER','EMPLOYEE','CUSTOMER')"
+    )
+    public ResponseEntity<
+            ApiResponse<List<InventoryResponse>>>
+            getAllInventory() {
 
-        List<Inventory> inventories =
+        List<InventoryResponse> inventories =
                 inventoryService.getAllInventory();
 
-        ApiResponse<List<Inventory>> response =
-                new ApiResponse<>(true,
+        ApiResponse<List<InventoryResponse>> response =
+                new ApiResponse<>(
+                        true,
                         "Inventory fetched successfully",
                         inventories);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Get Inventory By Id
-    // ===========================
+    // =========================================================
+    // GET INVENTORY BY ID
+    // ADMIN + MANAGER + EMPLOYEE + CUSTOMER
+    // =========================================================
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
-    public ResponseEntity<ApiResponse<Inventory>> getInventoryById(
-            @PathVariable Long id) {
+    @PreAuthorize(
+        "hasAnyRole('ADMIN','MANAGER','EMPLOYEE','CUSTOMER')"
+    )
+    public ResponseEntity<
+            ApiResponse<InventoryResponse>>
+            getInventoryById(
+                    @PathVariable Long id) {
 
-        Inventory inventory =
+        InventoryResponse inventory =
                 inventoryService.getInventoryById(id);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Inventory fetched successfully",
                         inventory);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Get Inventory By Product Id
-    // ===========================
+    // =========================================================
+    // GET INVENTORY BY PRODUCT ID
+    // ADMIN + MANAGER + EMPLOYEE + CUSTOMER
+    // =========================================================
 
     @GetMapping("/product/{productId}")
-    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
-    public ResponseEntity<ApiResponse<Inventory>> getInventoryByProductId(
-            @PathVariable Long productId) {
+    @PreAuthorize(
+        "hasAnyRole('ADMIN','MANAGER','EMPLOYEE','CUSTOMER')"
+    )
+    public ResponseEntity<
+            ApiResponse<InventoryResponse>>
+            getInventoryByProductId(
+                    @PathVariable Long productId) {
 
-        Inventory inventory =
-                inventoryService.getInventoryByProductId(productId);
+        InventoryResponse inventory =
+                inventoryService.getInventoryByProductId(
+                        productId);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Inventory fetched successfully",
                         inventory);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Update Inventory
-    // ===========================
+    // =========================================================
+    // UPDATE INVENTORY
+    // ADMIN ONLY
+    // =========================================================
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<Inventory>> updateInventory(
-            @PathVariable Long id,
-            @Valid @RequestBody InventoryRequest request) {
+    public ResponseEntity<
+            ApiResponse<InventoryResponse>>
+            updateInventory(
+                    @PathVariable Long id,
+                    @Valid @RequestBody
+                    InventoryRequest request) {
 
-        Inventory inventory =
-                inventoryService.updateInventory(id, request);
+        InventoryResponse inventory =
+                inventoryService.updateInventory(
+                        id,
+                        request);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Inventory updated successfully",
                         inventory);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Delete Inventory
-    // ===========================
+    // =========================================================
+    // DELETE INVENTORY
+    // ADMIN ONLY
+    // =========================================================
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<String>> deleteInventory(
-            @PathVariable Long id) {
+    public ResponseEntity<ApiResponse<String>>
+            deleteInventory(
+                    @PathVariable Long id) {
 
         inventoryService.deleteInventory(id);
 
         ApiResponse<String> response =
-                new ApiResponse<>(true,
+                new ApiResponse<>(
+                        true,
                         "Inventory deleted successfully",
                         null);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Stock In
-    // ===========================
+    // =========================================================
+    // STOCK IN
+    // ADMIN + MANAGER
+    // =========================================================
 
     @PutMapping("/stock-in/{productId}/{quantity}")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    public ResponseEntity<ApiResponse<Inventory>> stockIn(
-            @PathVariable Long productId,
-            @PathVariable Integer quantity) {
+    public ResponseEntity<
+            ApiResponse<InventoryResponse>>
+            stockIn(
+                    @PathVariable Long productId,
+                    @PathVariable Integer quantity) {
 
-        Inventory inventory =
-                inventoryService.stockIn(productId, quantity);
+        InventoryResponse inventory =
+                inventoryService.stockIn(
+                        productId,
+                        quantity);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Stock added successfully",
                         inventory);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Stock Out
-    // ===========================
+    // =========================================================
+    // STOCK OUT
+    // ADMIN + MANAGER
+    // =========================================================
 
     @PutMapping("/stock-out/{productId}/{quantity}")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    public ResponseEntity<ApiResponse<Inventory>> stockOut(
-            @PathVariable Long productId,
-            @PathVariable Integer quantity) {
+    public ResponseEntity<
+            ApiResponse<InventoryResponse>>
+            stockOut(
+                    @PathVariable Long productId,
+                    @PathVariable Integer quantity) {
 
-        Inventory inventory =
-                inventoryService.stockOut(productId, quantity);
+        InventoryResponse inventory =
+                inventoryService.stockOut(
+                        productId,
+                        quantity);
 
-        ApiResponse<Inventory> response =
-                new ApiResponse<>(true,
+        ApiResponse<InventoryResponse> response =
+                new ApiResponse<>(
+                        true,
                         "Stock deducted successfully",
                         inventory);
 
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
-    // Low Stock Products
-    // ===========================
+    // =========================================================
+    // LOW STOCK
+    // ADMIN + MANAGER
+    // =========================================================
 
     @GetMapping("/low-stock")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
-    public ResponseEntity<ApiResponse<List<Inventory>>> getLowStockProducts() {
+    public ResponseEntity<
+            ApiResponse<List<InventoryResponse>>>
+            getLowStockProducts() {
 
-        List<Inventory> inventories =
+        List<InventoryResponse> inventories =
                 inventoryService.getLowStockProducts();
 
-        ApiResponse<List<Inventory>> response =
-                new ApiResponse<>(true,
+        ApiResponse<List<InventoryResponse>> response =
+                new ApiResponse<>(
+                        true,
                         "Low stock products fetched successfully",
                         inventories);
 
         return ResponseEntity.ok(response);
     }
-
 }

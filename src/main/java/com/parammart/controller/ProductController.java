@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.parammart.dto.request.ProductRequest;
@@ -23,10 +24,12 @@ public class ProductController {
 
     // =========================================================
     // CREATE PRODUCT
+    // ADMIN + MANAGER
     // =========================================================
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('PRODUCT_CREATE')")
     public ProductResponse create(
             @Valid @RequestBody ProductRequest request) {
 
@@ -35,6 +38,7 @@ public class ProductController {
 
     // =========================================================
     // GET PRODUCT BY ID
+    // ADMIN + MANAGER + EMPLOYEE + CUSTOMER
     // =========================================================
 
     @GetMapping("/{id}")
@@ -209,9 +213,11 @@ public class ProductController {
 
     // =========================================================
     // UPDATE PRODUCT
+    // ADMIN + MANAGER
     // =========================================================
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('PRODUCT_UPDATE')")
     public ProductResponse update(
             @PathVariable Long id,
             @Valid @RequestBody ProductRequest request) {
@@ -224,10 +230,12 @@ public class ProductController {
 
     // =========================================================
     // DELETE PRODUCT
+    // ADMIN ONLY
     // =========================================================
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority('PRODUCT_DELETE')")
     public void delete(
             @PathVariable Long id) {
 

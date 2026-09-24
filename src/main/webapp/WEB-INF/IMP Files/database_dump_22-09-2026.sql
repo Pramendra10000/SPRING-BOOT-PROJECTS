@@ -203,7 +203,7 @@ CREATE TABLE `inventory` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKce3rbi3bfstbvvyne34c1dvyv` (`product_id`),
   CONSTRAINT `FKq2yge7ebtfuvwufr6lwfwqy9l` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,_binary '',25,NULL,1000,10,0,'2026-09-22 13:33:33.585157','Main Warehouse',1),(2,_binary '',20,NULL,1000,10,0,'2026-09-22 13:23:12.835962','Main Warehouse',2),(3,_binary '',30,NULL,1000,10,0,'2026-09-22 13:23:12.859813','Main Warehouse',3);
+INSERT INTO `inventory` VALUES (1,_binary '',25,NULL,1000,10,0,'2026-09-22 13:33:33.585157','Main Warehouse',1),(2,_binary '',20,NULL,1000,10,0,'2026-09-22 13:23:12.835962','Main Warehouse',2),(3,_binary '',30,NULL,1000,10,0,'2026-09-22 13:23:12.859813','Main Warehouse',3),(4,_binary '',15,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',4),(5,_binary '',18,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',5),(6,_binary '',20,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',6),(7,_binary '',25,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',7),(8,_binary '',45,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',8),(9,_binary '',50,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',9),(10,_binary '',8,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',10),(11,_binary '',30,'2026-09-24 15:13:02.897793',1000,10,0,'2026-09-24 15:13:02.897793','Main Warehouse',11);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,7 +415,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK6dotkott2kjsp8vw4d0m25fb7` (`email`),
   UNIQUE KEY `UK63cf888pmqtt5tipcne79xsbm` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -424,7 +424,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,_binary '\0',_binary '\0','2026-08-20 05:24:29.934396',_binary '\0','param@gmail.com',_binary '','Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,_binary '\0',_binary '\0','2026-08-20 12:10:48.274872',_binary '\0','rahul@abc.com',_binary '','Rahul','Kumar','9876543211','$2a$10$5OBNrHBLH/UIhDdMxVqOdemw5i7/3GaZrpAsL1kbohDrYzaQZriHO','ADMIN','2026-08-20 12:10:48.274872'),(3,_binary '\0',_binary '\0','2026-09-09 04:33:10.340577',_binary '\0','Tony@gmail.com',_binary '','Tony','Stark','6779809551','$2a$10$4gkMD1TNzF2x3ngbNYy5UuWQ3ItiQOvmbWx1aThxdI.u1XjeUYxRK','CUSTOMER','2026-09-09 04:33:10.340577');
+INSERT INTO `users` VALUES (1,_binary '\0',_binary '\0','2026-08-20 05:24:29.934396',_binary '\0','param@gmail.com',_binary '','Pramendra','Singh','8928391908','$2a$10$e4cDvE6AcqGB9hPFISpg2eplD1O0bkLnqSDzNcvigpGhQNEOCL3Ia','ADMIN','2026-08-20 05:24:29.934396'),(2,_binary '\0',_binary '\0','2026-08-20 12:10:48.274872',_binary '\0','rahul@abc.com',_binary '','Rahul','Kumar','9876543211','$2a$10$v7d/TO5nEqkm6JZd.M5VhOAB//AMXrh9BsX0rrcgZc.aK1ZWZIAca','EMPLOYEE','2026-08-20 12:10:48.274872'),(3,_binary '\0',_binary '\0','2026-09-09 04:33:10.340577',_binary '\0','Tony@gmail.com',_binary '','Tony','Stark','6779809551','$2a$10$v7d/TO5nEqkm6JZd.M5VhOAB//AMXrh9BsX0rrcgZc.aK1ZWZIAca','CUSTOMER','2026-09-09 04:33:10.340577'),(4,_binary '\0',_binary '\0','2026-09-24 10:19:54.236024',_binary '\0','Captain@gmail.com',_binary '','Captain','America','6989809551','$2a$10$k7BnBB1zlc4E/ucYP/WtI.PYSbpIej5SrapUGudGOcE/0ombAbJny','MANAGER','2026-09-24 10:19:54.236024');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,4 +441,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-22 19:10:56
+-- Dump completed on 2026-09-24 16:11:49

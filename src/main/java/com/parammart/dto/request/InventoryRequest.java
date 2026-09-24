@@ -5,16 +5,19 @@ import jakarta.validation.constraints.NotNull;
 
 public class InventoryRequest {
 
-    @NotNull
+    @NotNull(message = "Product ID is required")
     private Long productId;
 
-    @Min(0)
+    @NotNull(message = "Available stock is required")
+    @Min(value = 0, message = "Available stock cannot be negative")
     private Integer availableStock;
 
-    @Min(0)
+    @NotNull(message = "Minimum stock is required")
+    @Min(value = 0, message = "Minimum stock cannot be negative")
     private Integer minimumStock;
 
-    @Min(1)
+    @NotNull(message = "Maximum stock is required")
+    @Min(value = 1, message = "Maximum stock must be greater than zero")
     private Integer maximumStock;
 
     private String warehouseLocation;

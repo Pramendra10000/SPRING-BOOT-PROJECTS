@@ -52,6 +52,10 @@ After that use that token to authorization on top of swagger right corner , then
   "password": "Tony@123"
 }
 
+UPDATE users
+SET password = 'PASTE_GENERATED_BCRYPT_HASH_HERE'
+WHERE email = 'Tony@gmail.com';
+
 ---  login user -----
 
 Role :- Customer

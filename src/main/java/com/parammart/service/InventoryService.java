@@ -3,25 +3,25 @@ package com.parammart.service;
 import java.util.List;
 
 import com.parammart.dto.request.InventoryRequest;
-import com.parammart.entity.Inventory;
+import com.parammart.dto.response.InventoryResponse;
 
 public interface InventoryService {
 
-    Inventory createInventory(InventoryRequest request);
+    InventoryResponse createInventory(InventoryRequest request);
 
-    List<Inventory> getAllInventory();
+    List<InventoryResponse> getAllInventory();
 
-    Inventory getInventoryById(Long id);
+    InventoryResponse getInventoryById(Long id);
 
-    Inventory getInventoryByProductId(Long productId);
+    InventoryResponse getInventoryByProductId(Long productId);
 
-    Inventory updateInventory(Long id, InventoryRequest request);
+    InventoryResponse updateInventory(Long id, InventoryRequest request);
 
     void deleteInventory(Long id);
 
-    Inventory stockIn(Long productId, Integer quantity);
+    InventoryResponse stockIn(Long productId, Integer quantity);
 
-    Inventory stockOut(Long productId, Integer quantity);
+    InventoryResponse stockOut(Long productId, Integer quantity);
 
-    List<Inventory> getLowStockProducts();
+    List<InventoryResponse> getLowStockProducts();
 }

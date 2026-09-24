@@ -14,12 +14,14 @@ import com.parammart.dto.response.CartItemResponse;
 import com.parammart.dto.response.CartResponse;
 import com.parammart.entity.Cart;
 import com.parammart.entity.CartItem;
+import com.parammart.entity.Inventory;
 import com.parammart.entity.Product;
 import com.parammart.entity.User;
 import com.parammart.exception.BadRequestException;
 import com.parammart.exception.ResourceNotFoundException;
 import com.parammart.repository.CartItemRepository;
 import com.parammart.repository.CartRepository;
+import com.parammart.repository.InventoryRepository;
 import com.parammart.repository.ProductRepository;
 import com.parammart.repository.UserRepository;
 import com.parammart.service.CartService;
@@ -31,17 +33,20 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final ProductRepository productRepository;
+    private final InventoryRepository inventoryRepository;
     private final UserRepository userRepository;
 
     public CartServiceImpl(
             CartRepository cartRepository,
             CartItemRepository cartItemRepository,
             ProductRepository productRepository,
+            InventoryRepository inventoryRepository,
             UserRepository userRepository) {
 
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.productRepository = productRepository;
+        this.inventoryRepository = inventoryRepository;
         this.userRepository = userRepository;
     }
 
@@ -53,47 +58,76 @@ public class CartServiceImpl implements CartService {
     public CartResponse addToCart(CartRequest request) {
 
         if (request == null) {
-            throw new BadRequestException("Cart request cannot be null");
+
+            throw new BadRequestException(
+                    "Cart request cannot be null.");
         }
 
         if (request.getProductId() == null) {
-            throw new BadRequestException("Product ID is required");
+
+            throw new BadRequestException(
+                    "Product ID is required.");
         }
 
-        if (request.getQuantity() == null || request.getQuantity() <= 0) {
-            throw new BadRequestException("Quantity must be greater than zero");
+        if (request.getQuantity() == null ||
+                request.getQuantity() <= 0) {
+
+            throw new BadRequestException(
+                    "Quantity must be greater than zero.");
         }
 
         User user = getLoggedInUser();
 
-        Cart cart = cartRepository.findByUserId(user.getId())
+        Cart cart = cartRepository
+                .findByUserId(user.getId())
                 .orElseGet(() -> createCart(user));
 
-        Product product = productRepository.findById(request.getProductId())
+        // -----------------------------------------------------
+        // PRODUCT
+        // -----------------------------------------------------
+
+        Product product = productRepository
+                .findById(request.getProductId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "Product not found with id: "
                                         + request.getProductId()));
 
         if (!Boolean.TRUE.equals(product.getActive())) {
-            throw new BadRequestException("Product is not active");
-        }
 
-        if (product.getStock() == null || product.getStock() <= 0) {
-            throw new BadRequestException("Product is out of stock");
-        }
-
-        if (request.getQuantity() > product.getStock()) {
             throw new BadRequestException(
-                    "Only "
-                            + product.getStock()
-                            + " items are available in stock");
+                    "Product is not active.");
         }
+
+        // -----------------------------------------------------
+        // INVENTORY
+        // Inventory is the source of truth for stock.
+        // -----------------------------------------------------
+
+        Inventory inventory =
+                getInventoryForProduct(product);
+
+        validateInventoryAvailable(inventory);
+
+        int availableStock =
+                inventory.getAvailableStock();
+
+        if (request.getQuantity() > availableStock) {
+
+            throw new BadRequestException(
+                    "Only " + availableStock
+                            + " items are available in stock.");
+        }
+
+        // -----------------------------------------------------
+        // EXISTING CART ITEM
+        // -----------------------------------------------------
 
         Optional<CartItem> optionalItem =
-                cartItemRepository.findByCartIdAndProductId(
-                        cart.getId(),
-                        product.getId());
+                cartItemRepository
+                        .findByCartIdAndProductId(
+                                cart.getId(),
+                                product.getId());
 
         CartItem item;
 
@@ -101,19 +135,27 @@ public class CartServiceImpl implements CartService {
 
             item = optionalItem.get();
 
-            int newQuantity =
-                    item.getQuantity() + request.getQuantity();
+            int currentQuantity =
+                    item.getQuantity() != null
+                            ? item.getQuantity()
+                            : 0;
 
-            if (newQuantity > product.getStock()) {
+            int newQuantity =
+                    currentQuantity + request.getQuantity();
+
+            if (newQuantity > availableStock) {
+
                 throw new BadRequestException(
-                        "Only "
-                                + product.getStock()
-                                + " items are available in stock");
+                        "Only " + availableStock
+                                + " items are available in stock.");
             }
 
             item.setQuantity(newQuantity);
 
+            // Keep current cart price if already present.
+            // If missing, use current product price.
             if (item.getPrice() == null) {
+
                 item.setPrice(product.getPrice());
             }
 
@@ -128,18 +170,32 @@ public class CartServiceImpl implements CartService {
             cart.addItem(item);
         }
 
+        // -----------------------------------------------------
+        // ITEM TOTAL
+        // -----------------------------------------------------
+
+        if (item.getPrice() == null) {
+
+            throw new BadRequestException(
+                    "Product price is not configured.");
+        }
+
         item.setTotalPrice(
                 item.getPrice()
                         .multiply(
                                 BigDecimal.valueOf(
-                                        item.getQuantity()))
-        );
+                                        item.getQuantity())));
 
         cartItemRepository.save(item);
 
+        // -----------------------------------------------------
+        // CART TOTAL
+        // -----------------------------------------------------
+
         calculateCart(cart);
 
-        Cart savedCart = cartRepository.save(cart);
+        Cart savedCart =
+                cartRepository.save(cart);
 
         return mapToCartResponse(savedCart);
     }
@@ -154,10 +210,11 @@ public class CartServiceImpl implements CartService {
 
         User user = getLoggedInUser();
 
-        Cart cart = cartRepository.findByUserId(user.getId())
+        Cart cart = cartRepository
+                .findByUserId(user.getId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Cart not found"));
+                                "Cart not found."));
 
         return mapToCartResponse(cart);
     }
@@ -172,13 +229,15 @@ public class CartServiceImpl implements CartService {
             Integer quantity) {
 
         if (productId == null) {
+
             throw new BadRequestException(
-                    "Product ID is required");
+                    "Product ID is required.");
         }
 
         if (quantity == null || quantity <= 0) {
+
             throw new BadRequestException(
-                    "Quantity must be greater than zero");
+                    "Quantity must be greater than zero.");
         }
 
         Cart cart = getCartEntity();
@@ -190,32 +249,49 @@ public class CartServiceImpl implements CartService {
                                 productId)
                         .orElseThrow(() ->
                                 new ResourceNotFoundException(
-                                        "Item not found in cart"));
+                                        "Item not found in cart."));
 
         Product product = item.getProduct();
 
         if (product == null) {
+
             throw new ResourceNotFoundException(
-                    "Product not found");
+                    "Product not found for cart item.");
         }
 
         if (!Boolean.TRUE.equals(product.getActive())) {
+
             throw new BadRequestException(
-                    "Product is not active");
+                    "Product is not active.");
         }
 
-        if (product.getStock() == null
-                || product.getStock() <= 0) {
+        // -----------------------------------------------------
+        // INVENTORY CHECK
+        // -----------------------------------------------------
+
+        Inventory inventory =
+                getInventoryForProduct(product);
+
+        validateInventoryAvailable(inventory);
+
+        int availableStock =
+                inventory.getAvailableStock();
+
+        if (quantity > availableStock) {
 
             throw new BadRequestException(
-                    "Product is out of stock");
+                    "Only " + availableStock
+                            + " items are available in stock.");
         }
 
-        if (quantity > product.getStock()) {
+        // -----------------------------------------------------
+        // UPDATE ITEM
+        // -----------------------------------------------------
+
+        if (item.getPrice() == null) {
+
             throw new BadRequestException(
-                    "Only "
-                            + product.getStock()
-                            + " items are available in stock");
+                    "Cart item price is not configured.");
         }
 
         item.setQuantity(quantity);
@@ -223,14 +299,14 @@ public class CartServiceImpl implements CartService {
         item.setTotalPrice(
                 item.getPrice()
                         .multiply(
-                                BigDecimal.valueOf(quantity))
-        );
+                                BigDecimal.valueOf(quantity)));
 
         cartItemRepository.save(item);
 
         calculateCart(cart);
 
-        Cart savedCart = cartRepository.save(cart);
+        Cart savedCart =
+                cartRepository.save(cart);
 
         return mapToCartResponse(savedCart);
     }
@@ -243,8 +319,9 @@ public class CartServiceImpl implements CartService {
     public void removeItem(Long productId) {
 
         if (productId == null) {
+
             throw new BadRequestException(
-                    "Product ID is required");
+                    "Product ID is required.");
         }
 
         Cart cart = getCartEntity();
@@ -256,7 +333,7 @@ public class CartServiceImpl implements CartService {
                                 productId)
                         .orElseThrow(() ->
                                 new ResourceNotFoundException(
-                                        "Item not found in cart"));
+                                        "Item not found in cart."));
 
         cart.removeItem(item);
 
@@ -278,7 +355,9 @@ public class CartServiceImpl implements CartService {
 
         cart.getCartItems().clear();
 
-        cart.setTotalAmount(BigDecimal.ZERO);
+        cart.setTotalAmount(
+                BigDecimal.ZERO);
+
         cart.setTotalItems(0);
 
         cartRepository.save(cart);
@@ -308,10 +387,11 @@ public class CartServiceImpl implements CartService {
 
         User user = getLoggedInUser();
 
-        return cartRepository.findByUserId(user.getId())
+        return cartRepository
+                .findByUserId(user.getId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
-                                "Cart not found"));
+                                "Cart not found."));
     }
 
     // =========================================================
@@ -325,19 +405,21 @@ public class CartServiceImpl implements CartService {
                         .getContext()
                         .getAuthentication();
 
-        if (authentication == null
-                || !authentication.isAuthenticated()) {
+        if (authentication == null ||
+                !authentication.isAuthenticated()) {
 
             throw new BadRequestException(
-                    "User is not authenticated");
+                    "User is not authenticated.");
         }
 
-        String email = authentication.getName();
+        String email =
+                authentication.getName();
 
-        if (email == null || email.isBlank()) {
+        if (email == null ||
+                email.isBlank()) {
 
             throw new BadRequestException(
-                    "Authenticated user email not found");
+                    "Authenticated user email not found.");
         }
 
         return userRepository
@@ -349,24 +431,67 @@ public class CartServiceImpl implements CartService {
     }
 
     // =========================================================
-    // CALCULATE CART TOTALS
+    // GET INVENTORY
+    // =========================================================
+
+    private Inventory getInventoryForProduct(
+            Product product) {
+
+        return inventoryRepository
+                .findByProductId(product.getId())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Inventory not found for product: "
+                                        + product.getName()));
+    }
+
+    // =========================================================
+    // VALIDATE INVENTORY
+    // =========================================================
+
+    private void validateInventoryAvailable(
+            Inventory inventory) {
+
+        if (!Boolean.TRUE.equals(
+                inventory.getActive())) {
+
+            throw new BadRequestException(
+                    "Inventory is inactive.");
+        }
+
+        if (inventory.getAvailableStock() == null) {
+
+            throw new BadRequestException(
+                    "Inventory stock is not configured.");
+        }
+
+        if (inventory.getAvailableStock() <= 0) {
+
+            throw new BadRequestException(
+                    "Product is out of stock.");
+        }
+    }
+
+    // =========================================================
+    // CALCULATE CART TOTAL
     // =========================================================
 
     private void calculateCart(Cart cart) {
 
-        BigDecimal totalAmount = BigDecimal.ZERO;
+        BigDecimal totalAmount =
+                BigDecimal.ZERO;
 
         int totalItems = 0;
 
-        for (CartItem item : cart.getCartItems()) {
+        for (CartItem item :
+                cart.getCartItems()) {
 
             if (item == null) {
                 continue;
             }
 
-            if (item.getQuantity() == null
-                    || item.getQuantity() <= 0) {
-
+            if (item.getQuantity() == null ||
+                    item.getQuantity() <= 0) {
                 continue;
             }
 
@@ -378,7 +503,8 @@ public class CartServiceImpl implements CartService {
                     totalAmount.add(
                             item.getTotalPrice());
 
-            totalItems += item.getQuantity();
+            totalItems +=
+                    item.getQuantity();
         }
 
         cart.setTotalAmount(totalAmount);
@@ -386,10 +512,11 @@ public class CartServiceImpl implements CartService {
     }
 
     // =========================================================
-    // MAP ENTITY -> RESPONSE DTO
+    // MAP CART RESPONSE
     // =========================================================
 
-    private CartResponse mapToCartResponse(Cart cart) {
+    private CartResponse mapToCartResponse(
+            Cart cart) {
 
         List<CartItemResponse> items =
                 cart.getCartItems()
@@ -404,18 +531,18 @@ public class CartServiceImpl implements CartService {
                 cart.getActive(),
                 cart.getCreatedAt(),
                 cart.getUpdatedAt(),
-                items
-        );
+                items);
     }
 
     // =========================================================
-    // MAP CART ITEM -> RESPONSE DTO
+    // MAP CART ITEM RESPONSE
     // =========================================================
 
     private CartItemResponse mapToCartItemResponse(
             CartItem item) {
 
-        Product product = item.getProduct();
+        Product product =
+                item.getProduct();
 
         return new CartItemResponse(
                 item.getId(),
@@ -427,7 +554,6 @@ public class CartServiceImpl implements CartService {
                         : null,
                 item.getQuantity(),
                 item.getPrice(),
-                item.getTotalPrice()
-        );
+                item.getTotalPrice());
     }
 }

@@ -51,6 +51,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (jwtService.isTokenValid(jwt, userDetails)) {
 
+                System.out.println("======================================");
+                System.out.println("JWT USER: " + userDetails.getUsername());
+                System.out.println("JWT ROLE: " + userDetails);
+                System.out.println("JWT AUTHORITIES: " + userDetails.getAuthorities());
+                System.out.println("======================================");
+
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
                                 userDetails,
