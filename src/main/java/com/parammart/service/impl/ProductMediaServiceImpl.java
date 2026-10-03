@@ -40,7 +40,7 @@ public class ProductMediaServiceImpl implements ProductMediaService {
     );
 
     private static final long MAX_IMAGE_SIZE = 10L * 1024 * 1024;
-    private static final long MAX_VIDEO_SIZE = 50L * 1024 * 1024;
+    private static final long MAX_VIDEO_SIZE = 50L * 1024 * 1024; //50 mb
     private static final long MAX_DOCUMENT_SIZE = 20L * 1024 * 1024;
 
     private final ProductMediaRepository productMediaRepository;
@@ -298,7 +298,7 @@ public class ProductMediaServiceImpl implements ProductMediaService {
 
                 if (size > MAX_VIDEO_SIZE) {
                     throw new IllegalArgumentException(
-                            "Video size cannot exceed 100 MB"
+                            "Video size cannot exceed 50 MB"
                     );
                 }
             }
